@@ -1,4 +1,7 @@
 <?php
+
+namespace timeAndDate;
+
 require_once 'WeekDayTranslator.php';
 
 
@@ -54,11 +57,9 @@ require_once 'WeekDayTranslator.php';
 //echo 'Converted again = ' .date('Y-m-d l') . PHP_EOL;
 
 
-
 // strftime () - deprecated from 8.1
 //setlocale(LC_TIME, "pl_PL");
 //echo strftime("%A") . PHP_EOL;
-
 
 
 // getdate () // return's array with actual date
@@ -89,10 +90,11 @@ echo 'Pacific : ' . $date->format('Y-m-d H:i:sP') . PHP_EOL;
 
 // Exercises: born date
 
-$bornDate = date('Y-m-d l', mktime(14,15,0,10,17,1984));
-$bornDay = date('l', mktime(14,15,0,10,17,1984));
+$bornDate = date('Y-m-d l', mktime(14, 15, 0, 10, 17, 1984));
+$bornDay = date('l', mktime(14, 15, 0, 10, 17, 1984));
 
-class BornDayPlTranslator {
+class BornDayPlTranslator
+{
     use WeekDayTranslator;
 
     public static function getDay(string $dayName): string
@@ -105,9 +107,7 @@ class BornDayPlTranslator {
 echo 'Born day: ' . BornDayPlTranslator::getDay($bornDay) . PHP_EOL;
 
 
-
-
-$bornDateDetails = getdate(mktime(14,15,0,10,17,1984));
+$bornDateDetails = getdate(mktime(14, 15, 0, 10, 17, 1984));
 echo 'Born date: ' . $bornDate . PHP_EOL;
 print_r($bornDateDetails);
 
@@ -120,10 +120,11 @@ echo 'Dzisiaj jest ' . $actualDate . ' godzina ' . $actualTime . PHP_EOL;
 
 function isLeapYear(int $checkedYear): bool
 {
-    $isLeapYear = date('L', mktime(0,0,0,1,1,$checkedYear));
+    $isLeapYear = date('L', mktime(0, 0, 0, 1, 1, $checkedYear));
 
     return $isLeapYear === '1';
 }
+
 $yearsToCheck = [
     '2000' => 2000,
     '2001' => 2001,

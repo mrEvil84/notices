@@ -20,9 +20,9 @@ class Vehicle
         return 'Vehicle: ' . $this->type . 'number of items ' . $this->number ;
     }
 
-    public function __invoke(): self // gdy traktujemy obiekt jako funkcję
+    public function __invoke(int $number = 200): self // gdy traktujemy obiekt jako funkcję
     {
-        $this->number = 200;
+        $this->number = $number;
         return $this;
     }
 }
@@ -38,5 +38,5 @@ var_dump($unserializedVehicle);
 echo $v1 . PHP_EOL;
 
 var_dump(
-    ($v1)()
+    ($v1)(300)
 );

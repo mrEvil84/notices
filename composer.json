@@ -1,0 +1,17 @@
+{
+    "name": "pkowerz-macwro/git-sandbox",
+    "description": "git and php sandbox",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "PkowerzMacwro\\GitSandbox\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pkowerzanow",
+            "email": "pkowerzanow@pgs-soft.com"
+        }
+    ],
+    "require": {}
+}
