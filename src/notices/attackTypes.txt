@@ -1,0 +1,10 @@
+Cross-Site Scripting (XSS)
+SQL Injection
+
+Cross Site Request Forgery (XSRF/CSRF)
+-  is a type of malicious exploit of a website where unauthorized commands are submitted from a user that the web application trust
+
+Session Hijacking
+Distributed Denial of Service (DDoS)
+Brute Force Attack, Dictionary Attack
+Phishing Attack

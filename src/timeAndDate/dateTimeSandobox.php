@@ -2,6 +2,9 @@
 
 namespace timeAndDate;
 
+use DateTime;
+use DateTimeZone;
+
 require_once 'WeekDayTranslator.php';
 
 
@@ -82,7 +85,7 @@ require_once 'WeekDayTranslator.php';
 
 // TimeZones
 
-$date = new DateTime('2021-12-14 11:48:00', new DateTimeZone('Europe/Warsaw'));
+$date = new DateTime('now', new DateTimeZone('Europe/Warsaw'));
 echo 'Warsaw : ' . $date->format('Y-m-d H:i:sP') . PHP_EOL;
 
 $date->setTimezone(new DateTimeZone('Pacific/Chatham'));
@@ -112,7 +115,7 @@ echo 'Born date: ' . $bornDate . PHP_EOL;
 print_r($bornDateDetails);
 
 // Ex: Actual date formatted
-$actualDateAndTime = date('d-m-Y H:i:s');
+$actualDateAndTime = date('d-m-Y H:i:s', time());
 list($actualDate, $actualTime) = explode(' ', $actualDateAndTime);
 echo 'Dzisiaj jest ' . $actualDate . ' godzina ' . $actualTime . PHP_EOL;
 
@@ -144,3 +147,5 @@ foreach ($yearsToCheck as $year => $value) {
     echo $year . '->' . $isLeap . PHP_EOL;
     //echo 'Year ' . $year . ' ' . isLeapYear($value) ? 'is leap ' : 'not leap year' . PHP_EOL;
 }
+
+echo date('L', strtotime('last year')) . PHP_EOL;

@@ -1,0 +1,333 @@
+SQL - structured query language
+
+- Cechy MyISAM:
+
+blokada podczas operacji: cała tabela
+limit wielkości tabeli: 256 TB
+przeznaczenie: odczyt i zapis
+indeksowanie Full-Text: tak
+transakcje: nie
+pamięć podręczna danych: nie
+pamięć podręczna indeksów tak
+pamięć podręczna zapytań tak
+
+- Cechy InnoDB:
+
+blokada podczas operacji: wiersz
+limit wielkości tabeli: 64 TB
+przeznaczenie: odczyt i modyfikacja
+indeksowanie Full-Text: tak
+transakcje: tak
+pamięć podręczna danych: tak
+pamięć podręczna indeksów: tak
+pamięć podręczna zapytań: tak
+
+
+
+- Trigger
+
+Trigger to mechanizm automatycznego uruchamiania zapytań podczas
+wskazanych operacji w bazie danych (np. podczas aktualizacji lub zapisu danych).
+
+
+- MySQL is an open-source DBMS
+
+Q: How can you find out the version of the installed MySQL?
+A: SHOW VARIABLES LIKE “%version%”;
+
+Q: What is the function of myisamchk?
+A: myisamchk is a useful database utility tool that is used to get information about MyISAM database tables.
+    myisamchk [OPTION] table_name…
+
+Q: What are the purposes of using ENUM and SET data types?
+A: ENUM data type is used in the MySQL database table to select any one value from the predefined list.
+   SET data type is used to select one or more or all values from the predefined list.
+
+Q: What are the differences between a primary key and a foreign key?
+A: The database table uses a primary key to identify each row uniquely.
+   It is necessary to declare the primary key on those tables that require to create a relationship among them.
+   When the primary key of any table is used in another table as the primary key or another
+   field for making a database relation, then it is called a foreign key.
+
+The differences between these two keys are mentioned below:
+
+The primary key uniquely identifies a record, whereas foreign key refers to the primary key of another table.
+The primary key can never accept a NULL value but foreign key accepts a NULL value.
+When a record is inserted in a table that contains the primary key then it is not necessary
+to insert the value on the table that contains this primary key field as the foreign key.
+When a record is deleted from the table that contains the primary key
+then the corresponding record must be deleted from the table containing the foreign key for data consistency.
+But any record can be deleted from the table that contains a foreign key without deleting a related record of another table.
+
+
+Q: What are the differences between CHAR and VARCHAR data types?
+A: CHAR data type is used to store fixed-length string data and the  (fixed length - stala dlugosc)
+   VARCHAR data type is used to store variable-length string data.  (variable length - dlugosc zalezna od danej)
+   CHAR is used to store small data whereas VARCHAR is used to store large data.
+   CHAR works faster and VARCHAR works slower.
+
+Q: How can you filter the duplicate data while retrieving records from the table?
+A: A DISTINCT keyword is used to filter the duplicate data from the table while retrieving the records from a table.
+EG: SELECT DISTINCT type FROM items;
+
+Q: What is the difference between NOW() and CURRENT_DATE()?
+A: Both NOW() and CURRENT_DATE() are built-in MySQL methods.
+   NOW() is used to show the current date and time of the server
+   CURRENT_DATE() is used to show only the date of the server.
+
+Q: Which statement is used in a select query for partial matching?
+A: REGEXP and LIKE statements can be used in a SELECT query for partial matching.
+   REGEXP is used to search records based on the pattern and
+   LIKE is used to search any record by matching any string at the beginning or end or middle of a particular field value.
+EG: SELECT * FROM clients WHERE name REGEXP "^S";
+    SELECT * FROM clients WHERE name LIKE "A%";
+
+Q: Concat
+A: SELECT CONCAT(brand,'=>',type) from items;
+
+Q: How can you change the name of any existing table by using the SQL statement?
+A: RENAME TABLE table_name TO new_name
+
+Q: How can you retrieve a portion of any column value by using a SELECT query?
+A: SELECT SUBSTR(name,1,5) FROM products;
+
+Q: What is the purpose of using a HEAP table?
+A: The table which uses a hashed index and stores in the memory is called the HEAP table
+
+Q: How can you add and remove any column of a table?
+A: ALTER TABLE table_name ADD COLUMN column_name column_definition [FIRST|AFTER existing_colu
+
+Q: What is an index? How can an index be declared in MySQL?
+A: An index is a data structure of a MySQL table that is used to speed up the queries.
+EG:
+
+CREATE TABLE users(
+        username VARCHAR(50) PRIMARY KEY,
+        email VARCHAR(50) NOT NULL,
+        password VARCHAR(50) NOT NULL,
+        INDEX (username, email));
+
+SHOW INDEXES FROM users;
+
+Q: Jakie tabele i kolumny należy indeksować?
+A: Korzyść wydajnościowa ze stosowania indeksów jest największa w przypadku dużych tabel (zawierających najwięcej rekordów) oraz zapytań, które wykonywane są najczęściej. W MySQL i w innych RDBMS zaleca się indeksować następujące kolumny:
+
+kolumny najczęściej padające po słowie WHERE,
+kolumny dwóch tabel, które często łączymy,
+kolumny, według których sortujemy dane w raportach (kolumny padające po słowie ORDER BY i GROUP BY),
+kolumny które często zliczamy (SUM(), AVG(), MIN(), MAX(), COUNT())
+klucze obce i kolumny, których będziemy używać tak jak kluczy obcych,
+klucze niepowtarzalne UNIQUE_KEY (typu NIP, PESEL itd…),
+FULLTEXT w przypadku częstej potrzeby przeszukiwania tekstu.
+Można się kierować prostą zasadą, polegającą na tym, że nie tworzymy indeksu jeżeli nie jesteśmy przekonani, że faktycznie będziemy z niego korzystać.
+
+
+Q: Których kolumn nie należy indeksować?
+A: często aktualizowanych danych tym bardziej w tabelach InnoDB.
+
+Należy pamiętać, że indeks drastycznie spowalnia dodawanie,
+modyfikowanie i usuwanie danych, ponieważ indeksy muszą być aktualizowane za każdym razem,
+gdy tabela ulega nawet najmniejszej modyfikacji.
+Najlepszą praktyką jest dodanie indeksu dla wartości, które są często używane do wyszukiwania, ale nie ulegają częstym zmianom.
+
+Q: What is the view? How can you create and drop view in MySQL?
+A: A view works as a virtual table that is used to store query and returns a result set when it is called. An updatable view is also supported by MySQL.
+
+Q: What is the function of mysqldump?
+A: mysqldump is a useful utility tool of MySQL that is used to dump one or more or all databases from the server for backup or transfer to another database server.
+
+Q: How can you change the password of a MySQL user?
+A: SET PASSWORD FOR ‘username’@’hostname’ = PASSWORD(‘password’);
+
+Q: What is the difference between UNIX TIMESTAMP and MySQL TIMESTAMP?
+A: Both UNIX TIMESTAMP and MySQL TIMESTAMP are used to represent the date and time value.
+   The main difference between these values is that UNIX TIMESTAMP represents the value by using 32-bits integers
+   and MySQL TIMESTAMP represents the value in the human-readable format.
+
+EG: SELECT FROM_UNIXTIME (1596222320) AS 'MySQLTIMESTAMP';
+    SELECT UNIX_TIMESTAMP ('2018-12-25 09:45:40') AS 'UNIXTIMESTAMP';
+
+Q: How can you import tables from a SQL file into a database by using the MySQL client?
+A: mysql -u username -p database_name < sql_filename
+
+Q: What is the difference between the Primary key and the Unique key?
+A: The primary key field never accepts NULL value but a unique key field accepts a NULL value.
+
+Q: What is the purpose of using the IFNULL() function?
+A: IFNULL() function takes two arguments. It returns the first argument value if the value of the first argument
+   is not NULL and it returns the second argument if the value of the first argument is NULL.
+EG: SELECT IFNULL ("Tutorial", "fahmidasclassroom.com");
+
+JOINS
+
+Q: What is a join? Explain the different types of MySQL joins.
+A: The SQL statement that is used to make a connection between two or more tables based on the matching columns is called a join.
+
+--> Inner Join: INNER JOIN keyword selects records that have MATCHING(!) values in both tables.
+
+--> Left Join: The LEFT JOIN keyword returns all records from the left table (table1), and the matching records from the right table (table2). The result is 0 records from the right side, if there is no match.
+( np. jak tabela lewa to klienci a tabela prawa to zamowienia, to left join da wszystkich klientow ale jak nie bedzie mial zamowienia to w miejsce id wstawi null)
+
+--> Right Join: The RIGHT JOIN keyword returns all records from the right table (table2), and the matching records from the left table (table1). The result is 0 records from the left side, if there is no match.
+( np. jak lewa tabela to orders (select from orders) a prawa to empoyees right join employyes  to right join poda wszsystkich employes nawet jak dany pracownik nie bedzie miał order_id)
+Full Outer Join: It returns all the records that match from the left or right table.
+
+-->Full Join :  The FULL OUTER JOIN keyword returns all records when there is a match in left (table1) or right (table2) table records.
+             Tip: FULL OUTER JOIN and FULL JOIN are the same. Like LEFT JOIN AND RIGHT JOIN AT THE SAME TIME;
+
+SELECT column_name(s)
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column_name = table2.column_name
+WHERE condition;
+
+-->Self Join : A self join is a regular join, but the table is joined with itself.
+
+SELECT column_name(s)
+FROM table1 T1, table1 T2
+WHERE condition;
+
+**** Unions ****
+
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+Every SELECT statement within UNION must have the same number of columns
+The columns must also have similar data types
+The columns in every SELECT statement must also be in the same order
+The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL:
+
+EG:
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+
+Q: Explain the difference between DELETE and TRUNCATE.
+A:
+Two differences between these commands are mentioned below.
+
+->DELETE command is used to delete a single or multiple or all the records from the table.
+->TRUNCATE command is used to delete all the records from the table or make the table empty.
+Notice: When DELETE command is used to delete all the records from the table then it doesn’t re-initialize the table.
+ So, the AUTO_INCREMENT field does not count from one when the user inserts any record.
+
+**** HAVING ****:
+
+The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+EG:
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
+// The following SQL statement lists the number of customers in each country. Only include countries with more than 5 customers:
+
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
+
+**** EXISTS ****
+The EXISTS operator is used to test for the existence of any record in a subquery.
+The EXISTS operator returns TRUE if the subquery returns one or more records.
+
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+
+**** ANY **** (jakikolwiek)
+
+The following SQL statement lists the ProductName if it finds ANY records in the OrderDetails table has Quantity equal to 10 (this will return TRUE because the Quantity column has some values of 10):
+
+SELECT ProductName
+FROM Products
+WHERE ProductID = ANY
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10);
+
+**** ALL **** (wszystkie)
+
+The following SQL statement lists the ProductName if ALL the records in the OrderDetails table has Quantity equal to 10.
+This will of course return FALSE because the Quantity column has many different values (not only the value of 10):
+
+SELECT ProductName
+FROM Products
+WHERE ProductID = ALL
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10);
+
+**** SELECT INTO ****
+The SELECT INTO statement copies data from one table into a new table.
+EG:
+
+SELECT * INTO CustomersGermany
+FROM Customers
+WHERE Country = 'Germany';
+
+SELECT * INTO CustomersBackup2017 IN 'Backup.mdb'
+FROM Customers;
+
+SELECT Customers.CustomerName, Orders.OrderID
+INTO CustomersOrderBackup2017
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+
+**** INSERT INTO ****
+
+The INSERT INTO SELECT statement copies data from one table and inserts it into another table.
+The INSERT INTO SELECT statement requires that the data types in source and target tables match
+Note: The existing records in the target table are unaffected.
+
+EG:
+INSERT INTO Customers (CustomerName, City, Country)
+SELECT SupplierName, City, Country FROM Suppliers;
+
+**** CASE ****
+
+SELECT OrderID, Quantity,
+CASE
+    WHEN Quantity > 30 THEN 'The quantity is greater than 30'
+    WHEN Quantity = 30 THEN 'The quantity is 30'
+    ELSE 'The quantity is under 30'
+END AS QuantityText
+FROM OrderDetails;
+
+SELECT CustomerName, City, Country
+FROM Customers
+ORDER BY
+(CASE
+    WHEN City IS NULL THEN Country
+    ELSE City
+END);
+
+
+Q: The differences between InnoDB and MyISAM storage engines are discussed below:
+A:
+MyISAM supports the FULLTEXT index but InnoDB doesn’t support the FULLTEXT index.
+MyISAM is faster and InnoDB is slower.
+InnoDB supports ACID (Atomicity, Consistency, Isolation, and Durability) property but MyISAM doesn’t.
+InnoDB supports row-level locking and MyISAM supports table-level locking.
+InnoDB is suitable for large database and MyISAM is suitable for a small database.
+
+**** Transactions ****
+
+Q: What is a transaction? Describe MySQL transaction properties.
+A: When a group of database operations is done as a single unit then it is called a transaction.
+If any task of the transactional tasks remains incomplete then the transaction will not succeed.
+ Hence, it is mandatory to complete all the tasks of a transaction to make the transaction successful.
+
+ACID
+
+A transaction has four properties which are known as ACID property. These properties are described below.
+
+Atomicity: It ensures that all the tasks of a transaction will be completed successfully otherwise all the completed tasks will be rolled back to the previous state for any failure.
+Consistency: It ensures that the database state must be changed accurately for the committed transaction.
+Isolation: It ensures that all the tasks of a transaction will be done independently and transparently.
+Durability: It ensures that all the committed transaction is consistent for any type of system failure.

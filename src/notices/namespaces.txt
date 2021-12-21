@@ -1,0 +1,5 @@
+Przestrzeń nazw deklaruje się za pomocą słowa kluczowego „namespace”. Ich najważniejsze funkcje to:
+
+* dzielenie plików projektu w logiczną strukturę
+* zapobieganie konfliktom nazewniczym
+* wykorzystanie przy autoload-ingu klas

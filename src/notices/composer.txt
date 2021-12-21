@@ -1,0 +1,15 @@
+Composer jest to narzędzie służące do instalacji, konfiguracji i zarządzania zależnościami w projekcie PHP.
+
+composer.json:
+
+opis i metadane projektu
+lista zaleznożci
+autoload
+skrypty do uruchomienia
+pliki do załączenia
+composer.lock:
+
+tworzy się automatycznie przy pierwszej instalacji
+zawiera opis wszystkich zależności
+instalując zależności po raz drugi, composer będzie używał tego pliku po to aby pobrac odpowiednie wersje bubliotek
+innymi słowy, composer.lock jest zabezpieczeniem przed instalacją innych wersji zależności niż te ustalone w projekcie

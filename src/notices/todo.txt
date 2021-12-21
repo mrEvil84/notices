@@ -1,0 +1,5 @@
+1. sql queries
+2. rest
+3. composer
+4. strings exercises
+5.
