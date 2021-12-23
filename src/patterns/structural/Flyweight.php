@@ -1,6 +1,9 @@
 <?php
 
 // Pyłek jest strukturalnym wzorcem projektowym pozwalającym zmieścić więcej obiektów w danej przestrzeni pamięci RAM poprzez współdzielenie części opisu ich stanów.
+// Stan wewnetrzny ktory jest duzy przechowywany jest w klasie-pylek , dane te sa wspolne dla wielu podobnyh obiektow np. drzew
+// Stan zewnetrzny ktory jest zmienny np. pozycja malowania na ekranie jest zmienna
+// Tworzenie pylku zeby sie nie powtarzac , jest za pomoca fabryki
 
 
 // klasa pyłka przechowujaca wewnetrzny stan obiektu wspolny dla grupy obiektow
@@ -33,12 +36,81 @@ class TreeTypeFlyweight
     }
 }
 
+// klasa cotextu , zawiera stan zewnetrzny drzewa
+class Tree
+{
+    private int $x;
+    private int $y;
+    private TreeTypeFlyweight $treeTypeFlyweight;
+
+    public function __construct(int $x, int $y, TreeTypeFlyweight $treeTypeFlyweight)
+    {
+        $this->x = $x;
+        $this->y = $y;
+        $this->treeTypeFlyweight = $treeTypeFlyweight;
+    }
+
+    public function draw(): void
+    {
+        echo 'x : '
+            . $this->x
+            . ' y : '
+            . $this->y
+            . ' : '
+            . $this->treeTypeFlyweight->getName()
+            . ': '
+            . $this->treeTypeFlyweight->getColor()
+            . ': '
+            . $this->treeTypeFlyweight->getTexture()
+            . PHP_EOL;
+    }
+}
+
+// stan wewnetrzny , (duze obiekty etc.) ktore sa wspolne dla wielu obiektow przechowywany jest w pylku
 class TreeTypeFactory
 {
     private array $treeTypesFleiweight;
 
     public function getTreeTypeFleiweight(string $name, string $color, string $texture): TreeTypeFlyweight
     {
+        if (!empty($this->treeTypesFleiweight[$name][$color][$texture])) {
+            return $this->treeTypesFleiweight[$name][$color][$texture];
+        }
+
         $treeTypeFleiweight = new TreeTypeFlyweight($name, $color, $texture);
+        $this->treeTypesFleiweight [$name][$color][$texture][] = $treeTypeFleiweight;
+
+        return $treeTypeFleiweight;
     }
 }
+
+ class Forest
+ {
+     private array $trees;
+
+     public function add(Tree $tree): void
+     {
+         $this->trees [] = $tree;
+     }
+
+     public function draw(): void
+     {
+         /** @var Tree $tree */
+         foreach ($this->trees as $tree) {
+             $tree->draw();
+         }
+     }
+ }
+
+    $treeTypeFactory = new TreeTypeFactory();
+    $treeTypeFleiweight = $treeTypeFactory->getTreeTypeFleiweight('klon', 'czerwony', 'chropowata');
+
+    $forest = new Forest();
+    for ($i = 0; $i < 1000; $i++) {
+        $forest->add(new Tree($i, $i+1, $treeTypeFleiweight));
+    }
+
+    $forest->draw();
+
+    var_dump($treeTypeFactory);
+
