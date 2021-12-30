@@ -13,13 +13,14 @@
 
 // Kiedy używać :
 // 1. Stosuj wzorzec Budowniczy, aby pozbyć się “teleskopowych konstruktorów”.
-// 2. Stosuj wzorzec Budowniczy, gdy potrzebujesz możliwości tworzenia różnych reprezentacji jakiegoś produktu (na przykład, domy z kamienia i domy z drewna).
+// 2. Stosuj wzorzec Budowniczy, gdy potrzebujesz możliwości tworzenia różnych reprezentacji jakiegoś produktu
+//    (na przykład, domy z kamienia i domy z drewna).
 // 3. Stosuj ten wzorzec do konstruowania drzew Kompozytowych lub innych złożonych obiektów.
 
 // Zalety:
 // 1. Możesz konstruować obiekty etapami, odkładać niektóre etapy, lub wykonywać je rekursywnie.
 // 2. Możesz wykorzystać ponownie ten sam kod konstrukcyjny budując kolejne reprezentacje produktów.
-// 3. Zasada pojedynczej odpowiedzialności. Można odizolować skomplikowany kod konstrukcyjny od logiki biznesowej produktu.
+// 3. OCP, Zasada pojedynczej odpowiedzialności. Można odizolować skomplikowany kod konstrukcyjny od logiki biznesowej produktu.
 
 // Wady:
 // 1. Kod staje się bardziej skomplikowany, gdyż wdrożenie tego wzorca wiąże się z dodaniem wielu nowych klas.
@@ -196,6 +197,7 @@ class CarPackage
     }
 }
 
+// klasa dyrektora , przyjmuje budowniczych aby nimi zarzadzac i uzyskac porzadany set obiektow
 class CarDirector
 {
     private Builder $carBuilder;

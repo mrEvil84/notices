@@ -1,12 +1,17 @@
 <?php
+// CreationalMethod, FactoryMethod
 
-// Metoda wytwórcza jest kreacyjnym wzorcem projektowym, który udostępnia interfejs do tworzenia obiektów w ramach klasy bazowej, ale pozwala podklasom zmieniać typ tworzonych obiektów.
-// Wzorzec projektowy Metody wytwórczej proponuje zamianę bezpośrednich wywołań konstruktorów obiektów (wykorzystujących operator new) na wywołania specjalnej metody wytwórczej
+// Metoda wytwórcza jest kreacyjnym wzorcem projektowym,
+// który udostępnia interfejs do tworzenia obiektów w ramach klasy bazowej,
+// ale pozwala podklasom zmieniać typ tworzonych obiektów.
+// Wzorzec projektowy Metody wytwórczej proponuje zamianę bezpośrednich wywołań konstruktorów obiektów
+// (wykorzystujących operator new) na wywołania specjalnej metody wytwórczej
 
 // Kiedy stosowac :
 // 1. Stosuj Metodę Wytwórczą gdy nie wiesz z góry jakie typy obiektów pojawią się w twoim programie i jakie będą między nimi zależności.
 // 2. Korzystaj z Metody Wytwórczej gdy zamierzasz pozwolić użytkującym twą bibliotekę lub framework rozbudowywać jej wewnętrzne komponenty.
-// 3. Korzystaj z Metody wytwórczej gdy chcesz oszczędniej wykorzystać zasoby systemowe poprzez ponowne wykorzystanie już istniejących obiektów, zamiast odbudowywać je raz za razem.
+// 3. Korzystaj z Metody wytwórczej gdy chcesz oszczędniej wykorzystać zasoby systemowe poprzez ponowne wykorzystanie
+// już istniejących obiektów, zamiast odbudowywać je raz za razem.
 
 // Zalety:
 // 1. Unikasz ścisłego sprzęgnięcia pomiędzy twórcą a konkretnymi produktami.

@@ -4,7 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "PkowerzMacwro\\GitSandbox\\": "src/"
+            "PkowerzMacwro\\GitSandbox\\": "src/",
+            "Patterns\\": "src/patterns"
         }
     },
     "authors": [
@@ -13,5 +14,7 @@
             "email": "pkowerzanow@pgs-soft.com"
         }
     ],
-    "require": {}
+    "require": {
+        "spatie/array-to-xml": "^3.1"
+    }
 }

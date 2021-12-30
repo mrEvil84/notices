@@ -13,7 +13,7 @@
 // Zalety :
 // 1. Zyskujesz pewność, że produkty, jakie otrzymujesz stosując fabrykę, są ze sobą kompatybilne.
 // 2. Zapobiegasz ścisłemu sprzęgnięciu konkretnych produktów z kodem klienckim.
-// 3. Zasada pojedynczej odpowiedzialności. Możesz zebrać kod kreacyjny produktów w jednym miejscu w programie, ułatwiając tym samym późniejsze utrzymanie kodu.
+// 3. SRP, Zasada pojedynczej odpowiedzialności. Możesz zebrać kod kreacyjny produktów w jednym miejscu w programie, ułatwiając tym samym późniejsze utrzymanie kodu.
 // 4. Zasada otwarte/zamknięte. Możesz wprowadzać wsparcie dla nowych wariantów produktów bez psucia istniejącego kodu klienckiego.
 //
 // Wady :

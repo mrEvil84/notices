@@ -9,6 +9,7 @@ class Vehicle
     public function __sleep() : array
     {
         return ['type', 'number'];
+//        return ['type'];
     }
 
     public function __wakeup() {

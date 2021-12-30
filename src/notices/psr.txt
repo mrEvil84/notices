@@ -4,5 +4,6 @@ PSR-1, PSR-2 – standardy dot. kodowania
 PSR-0, PSR-4 – standardy dot. autoloadingu
 
 PSR-0 działa na zasadzie struktury katalogowej, która odzwierciedla namespace’y,
-PSR-4 pozwala na dostosowanie tego.
+PSR-4 pozwala na dostosowanie tego, wielkosc liter w sciezce ma znaczenie , mozna do jednego prefiksu dodawac po kilka sciezek
+
 
