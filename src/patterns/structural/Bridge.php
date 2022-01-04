@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+// MT: Pilot i sterowanie telewizorem,  interfejs z funkcjami to pilot a klasa to logika realizujaca sterowanie z pilota. -> tv
 
 // Most jest strukturalnym wzorcem projektowym pozwalającym na rozdzielenie dużej klasy
 // lub zestawu spokrewnionych klas na dwie hierarchie — abstrakcję oraz implementację.
 // Nad obiema można wówczas pracować niezależnie.
+// Przykład pilota do telewizora
 
 // Kiedy stosowac ?
 //

@@ -1,4 +1,6 @@
 <?php
+// MT: pakowanie klasy final w obiekt (dekorator) aby ją sobie rozszerzyć bez psucia jej
+
 
 // Dekorator to strukturalny wzorzec projektowy pozwalający dodawać nowe obowiązki obiektom poprzez umieszczanie tych obiektów
 // w specjalnych obiektach opakowujących, które zawierają odpowiednie zachowania.
@@ -8,7 +10,8 @@
 //  2. Stosuj ten wzorzec gdy rozszerzenie zakresu obowiązków obiektu za pomocą dziedziczenia byłoby niepraktyczne, lub niemożliwe.
 //  3. Wiele języków programowania posiada słowo kluczowe final, za pomocą którego uniemożliwia się dalsze rozszerzanie klasy.
 //     W przypadku klasy finalnej, jedynym sposobem na ponowne wykorzystanie istniejącego zachowania
-//     jest opakowanie jej nakładkami swojego autorstwa — zgodnie ze wzorcem Dekorator.
+//     jest opakowanie jej nakładkami swojego autorstwa — zgodnie ze wzorcem Dekorator, zachowane SRP, OCP
+
 //  Zalety:
 //  1. Można rozszerzać zachowanie obiektu bez tworzenia podklasy.
 //  2. Można dodawać lub usuwać obowiązki obiektu w trakcie działania programu.

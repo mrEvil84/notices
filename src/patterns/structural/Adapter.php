@@ -1,4 +1,6 @@
 <?php
+// MT: uzywanie starych klas które, mają niekompatybilny interfejs z naszą aplikacją
+
 
 // Adapter jest strukturalnym wzorcem projektowym pozwalającym na współdziałanie ze sobą obiektów o niekompatybilnych interfejsach.
 

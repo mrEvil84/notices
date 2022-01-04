@@ -1,4 +1,5 @@
 <?php
+// Ukrywanie skompikowanego interfejsu obiektu i udostepnienie tylko potrzenych rzeczy
 
 // Fasada jest strukturalnym wzorcem projektowym, który wyposaża bibliotekę, framework lub inny złożony zestaw klas w uproszczony interfejs.
 

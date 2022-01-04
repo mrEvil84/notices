@@ -1,14 +1,15 @@
 <?php
+// MindTrigger: Struktury drzewiaste, pudełka z produktami w mniejszych pudełkach.
 
 // Kompozyt to strukturalny wzorzec projektowy pozwalający komponować obiekty w struktury drzewiaste,
 // a następnie traktować te struktury jakby były osobnymi obiektami.
 //
 // Kiedy stosowac ?
-// 1.  Stosuj wzorzec Kompozyt gdy musisz zaimplementować drzewiastą strukturę obiektów.
-// 2. Stosuj ten wzorzec gdy chcesz, aby kod kliencki traktował zarówno proste, jak i złożone elementy jednakowo.
+// 1. Stosuj wzorzec Kompozyt gdy, musisz zaimplementować drzewiastą strukturę obiektów.
+// 2. Stosuj ten wzorzec gdy, chcesz, aby kod kliencki traktował zarówno proste, jak i złożone elementy jednakowo.
 //
 // Zalety:
-// 1.  Można pracować ze skomplikowanymi strukturami drzewiastymi w wygodny sposób: wykorzystaj na swoją korzyść polimorfizm i rekursję.
+// 1. Można pracować ze skomplikowanymi strukturami drzewiastymi w wygodny sposób: wykorzystaj na swoją korzyść polimorfizm i rekursję.
 // 2. Zasada otwarte/zamknięte. Możesz wprowadzać do programu obsługę nowych typów elementów bez psucia istniejącego kodu, gdyż pracuje on teraz z drzewem różnych obiektów.
 //
 // Wady:
@@ -49,7 +50,8 @@ class Car implements Product
 
 }
 
-class Package implements Product // klasa kompozyt , posiada w sobie inne produkty (obiekty)
+
+class PackageComposite implements Product // klasa kompozyt , posiada w sobie inne produkty (obiekty)
 {
     /**
      * @var Product[]
@@ -76,12 +78,12 @@ class Package implements Product // klasa kompozyt , posiada w sobie inne produk
     }
 }
 
-$packageSmall = new Package();
+$packageSmall = new PackageComposite();
 $packageSmall->add(new Apple());
 $packageSmall->add(new Apple());
 $packageSmall->add(new Apple());
 
-$packageBig = new Package();
+$packageBig = new PackageComposite();
 $packageBig->add($packageSmall);
 $packageBig->add(new Apple());
 $packageBig->add(new Car());
