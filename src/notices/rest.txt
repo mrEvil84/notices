@@ -9,7 +9,8 @@ GET, POST, PUT i DELETE – metody wykorzystywane w API do pobierania, zapisywan
 HTTP Verb	CRUD
 POST	    Create
 GET	        Read
-PUT	        Update/Replace, PUT is most-often utilized for **update** capabilities, PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource.
+PUT	        Update/Replace, PUT is most-often utilized for **update** capabilities,
+            PUT-ing to a known resource URI with the request body containing the newly-updated representation of the original resource.
 PATCH	    Update/Modify, The PATCH request only needs to contain the changes to the resource, not the complete resource.
 
 

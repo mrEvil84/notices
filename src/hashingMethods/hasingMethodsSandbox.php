@@ -15,3 +15,9 @@ echo $cryptedData . PHP_EOL;
 $data = password_hash('secret', PASSWORD_ARGON2I);
 
 echo 'Data from password_hash: ' . $data . PHP_EOL;
+
+
+$encryptedData = hash_hmac('sha256', 'secret', '84101714435');
+
+var_dump($encryptedData);
+

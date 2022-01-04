@@ -7,3 +7,8 @@ PSR-0 działa na zasadzie struktury katalogowej, która odzwierciedla namespace�
 PSR-4 pozwala na dostosowanie tego, wielkosc liter w sciezce ma znaczenie , mozna do jednego prefiksu dodawac po kilka sciezek
 
 
+PSR-2
+
+Visibility MUST be declared on all properties and methods;
+- abstract and final MUST be declared before the visibility;
+- static MUST be declared after the visibility.

@@ -8,7 +8,7 @@
 # array_combine -> array_combine(keys,values) -> create assoc array
 # in_array -> return true if array contains searched value
 # array_key_exists -> return true if key exists in array
-
+# array_shift -> zwroc pierwszy element z tablicy i usuń go z niej jednocześnie
 
 //$keys = ['id', 'name', 'surname', 'city'];
 //$values = [1234, 'Piotr', 'Kowerzanow', 'Różyny'];

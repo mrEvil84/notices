@@ -1,0 +1,32 @@
+// art: https://sqlwpraktyce.wordpress.com/2012/07/29/deadlock/
+
+Poziomy izolacji
+W ten sposób dochodzimy do pojęcia poziomu izolacji bazy danych, który definiuje dostęp do określonych zasobów przez wiele równoległych procesów. Wyróżniamy następujące poziomy izolacji:
+
+Read uncommited – jest to najmniej restrykcyjne ustawienie, które praktycznie powoduje ignorowanie założonych blokad. Jeżeli jedna transakcja nie została zatwierdzona (commit) ale zmieniła dane w bazie to w tym samym czasie inny proces może te dane odczytać. Jeżeli wspomniana transakcja zostanie wycofana to w efekcie okaże się, że drugi proces pobrał dane, które zostały wycofane.
+
+Read commited – jest to domyślna opcja, która powoduje, że we wspomnianym przykładzie zostaną odczytane dane sprzed rozpoczęcia pierwszej transakcji. Podstawową wadą tej opcji jest oczywiście odwrotna sytuacja niż poprzednio – w momencie zatwierdzenia transakcji dane zostaną zmienione czyli nasz pierwotny odczyt będzie nieaktualny.
+
+Repeatable read – w tym przypadku odczytywane są jedynie dane z zatwierdzonych transakcji, a żadna z transakcji nie może zmodyfikować danych, które zostały odczytane
+
+Snapshot – w tym przypadku każda transakcja w momencie jej utworzenia tworzy sobie snapshot danych i na nim pracuje do czasu jej zakończenia. W ten sposób inne transakcje nie są w stanie zmodyfikować danych, które zostały użyte. Nawet jeżeli inna transakcja zmodyfikuje dane to oryginalna transakcja cały czas pracuje na danych z momentu jej utworzenia. W ten sposób upraszczamy dostęp do danych ale powoduje to dodatkowe obciążenie tabeli tempdb.
+
+Serializable – odczyt danych z tabeli za pośrednictwem instrukcji select powoduje zablokowanie danego zakresu. W efekcie żadna inna transakcja nie będzie miała możliwości zmiany danych w tym okresie.
+
+W praktyce ustawienie właściwego poziomu izolacji to walka między aktualnością zwracanych danych a wydajnością. Wybór odpowiedniej opcji jest zwłaszcza uzależniony od funkcjonalności aplikacji – jeżeli nasza aplikacja wyłącznie czyta dane, które nigdy się nie zmieniają to oczywiście najbardziej efektywnym ustawieniem będzie Read uncommited. Takie ustawienie będzie jednak najprawdopodobniej nieakceptowalne przy częstych zmianach w bazie.
+
+
+
+Read commited jest opcją domyślną i w praktyce najbardziej popularną. Warto zatem wiedzieć, że występuje ona w dwóch odmianach w zależności od ustawienia dodatkowego parametru READ_COMMITTED_SNAPSHOT (domyślna wartość to off):
+Read commited (locking) – domyślne ustawienie, które sprowadza się do działania zgodnego z wcześniejszym opisem
+Read commited (snapshot) – wymaga aktywowania opcji READ_COMMITTED_SNAPSHOT. W efekcie podczas zmiany wartości w bazie w ramach transakcji jest tworzony snapshot starych danych dzięki czemu inna transakcja może bez problemu odczytać wartość z bazy nie czekając na zatwierdzenie pierwszego zapisu. Należy jednak pamiętać, że niesie to za sobą poważne konsekwencje – z pewnością znacznie zmniejszy się liczba deadlocków w bazie ale taka sytuacja może nie być akceptowalna z punktu widzenia biznesowego.  Wspomniana opcja ma jednak jedną podstawową zaletę w stosunku do trybów izolacji – jest ustawiana na poziomie całej bazy danych, a nie na poziomie konkretnych sesji.
+
+[DEADLOCK]
+
+Jest to sytuacja wzajemnego zakleszczenia się dwóch lub większej liczby transakcji.
+Jeżeli przykładowo mamy pierwszą transakcję, która blokuje dane w tabeli A i próbuje zmodyfikować dane w tabeli B oraz drugą transakcję,
+która blokuje dane w tabeli B i próbuje zmodyfikować dane w tabeli A to pojawia się deadlock.
+Obie transakcje będą czekały wzajemnie na zwolnienie blokady aby móc dokończyć swoje działanie.
+W takiej sytuacji proces sqla przerywa jedną z transakcji zwracając błąd (tytułowy deadlock)
+tak aby chociaż jedna z transakcji mogła dokończyć działanie. W praktyce SQL Server przerywa transakcję,
+która wymaga mniejszych zasobów do wykonania rollbacku.

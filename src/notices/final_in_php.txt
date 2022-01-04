@@ -1,0 +1,23 @@
+Note: Properties cannot be declared final:
+only:
+ - classes,
+ - methods,
+ - constants (as of PHP 8.1.0) may be declared as final.
+
+As of PHP 8.0.0, private methods may not be declared final except for the constructor.
+
+Nie można nadpisywać metod prywatnych z klasy bazowej oznaczonych final.
+
+Example:
+<?php
+class parentClass {
+    final private function someMethod() { }
+}
+class childClass extends parentClass {
+    private function someMethod() { }
+}
+?>
+dies with error "Fatal error: Cannot override final method parentClass::someMethod() in ***.php on line 7"
+
+
+If you ever come across a finalized class or method that you wish to extend, write a decorator instead.

@@ -28,7 +28,7 @@ require_once 'WeekDayTranslator.php';
 
 //$hourInSeconds = 60 * 60;
 //$dayInSeconds = 60 * 60 * 24;
-
+//
 //$actualDateTime = date('l Y-m-d H:i:s ');
 //echo 'Actual date and time : ' . $actualDateTime . PHP_EOL;
 //print_r('Yesterday date and time : ' . date('Y-m-d D H:i:s', time() - $dayInSeconds));
@@ -85,67 +85,67 @@ require_once 'WeekDayTranslator.php';
 
 // TimeZones
 
-$date = new DateTime('now', new DateTimeZone('Europe/Warsaw'));
-echo 'Warsaw : ' . $date->format('Y-m-d H:i:sP') . PHP_EOL;
+//$date = new DateTime('now', new DateTimeZone('Europe/Warsaw'));
+//echo 'Warsaw : ' . $date->format('Y-m-d H:i:sP') . PHP_EOL;
+//
+//$date->setTimezone(new DateTimeZone('Pacific/Chatham'));
+//echo 'Pacific : ' . $date->format('Y-m-d H:i:sP') . PHP_EOL;
+//
+//// Exercises: born date
+//
+//$bornDate = date('Y-m-d l', mktime(14, 15, 0, 10, 17, 1984));
+//$bornDay = date('l', mktime(14, 15, 0, 10, 17, 1984));
+//
+//class BornDayPlTranslator
+//{
+//    use WeekDayTranslator;
+//
+//    public static function getDay(string $dayName): string
+//    {
+//        return WeekDayTranslator::getDayTranslation($dayName);
+//    }
+//
+//}
 
-$date->setTimezone(new DateTimeZone('Pacific/Chatham'));
-echo 'Pacific : ' . $date->format('Y-m-d H:i:sP') . PHP_EOL;
+//echo 'Born day: ' . BornDayPlTranslator::getDay($bornDay) . PHP_EOL;
 
-// Exercises: born date
-
-$bornDate = date('Y-m-d l', mktime(14, 15, 0, 10, 17, 1984));
-$bornDay = date('l', mktime(14, 15, 0, 10, 17, 1984));
-
-class BornDayPlTranslator
-{
-    use WeekDayTranslator;
-
-    public static function getDay(string $dayName): string
-    {
-        return WeekDayTranslator::getDayTranslation($dayName);
-    }
-
-}
-
-echo 'Born day: ' . BornDayPlTranslator::getDay($bornDay) . PHP_EOL;
-
-
-$bornDateDetails = getdate(mktime(14, 15, 0, 10, 17, 1984));
-echo 'Born date: ' . $bornDate . PHP_EOL;
-print_r($bornDateDetails);
+//
+//$bornDateDetails = getdate(mktime(14, 15, 0, 10, 17, 1984));
+//echo 'Born date: ' . $bornDate . PHP_EOL;
+//print_r($bornDateDetails);
 
 // Ex: Actual date formatted
-$actualDateAndTime = date('d-m-Y H:i:s', time());
-list($actualDate, $actualTime) = explode(' ', $actualDateAndTime);
-echo 'Dzisiaj jest ' . $actualDate . ' godzina ' . $actualTime . PHP_EOL;
+//$actualDateAndTime = date('d-m-Y H:i:s', time());
+//list($actualDate, $actualTime) = explode(' ', $actualDateAndTime);
+//echo 'Dzisiaj jest ' . $actualDate . ' godzina ' . $actualTime . PHP_EOL;
 
 // check if year is leap year, rok przestępny
 
-function isLeapYear(int $checkedYear): bool
-{
-    $isLeapYear = date('L', mktime(0, 0, 0, 1, 1, $checkedYear));
+//function isLeapYear(int $checkedYear): bool
+//{
+//    $isLeapYear = date('L', mktime(0, 0, 0, 1, 1, $checkedYear));
+//
+//    return $isLeapYear === '1';
+//}
 
-    return $isLeapYear === '1';
-}
+//$yearsToCheck = [
+//    '2000' => 2000,
+//    '2001' => 2001,
+//    '2002' => 2002,
+//    '2003' => 2003,
+//    '2004' => 2004,
+//    '2005' => 2005,
+//    '2006' => 2006,
+//    '2007' => 2007,
+//    '2008' => 2008,
+//    '2009' => 2009,
+//    '2010' => 2010,
+//];
+//
+//foreach ($yearsToCheck as $year => $value) {
+//    $isLeap = isLeapYear($value) ? 'yes' : 'no';
+//    echo $year . '->' . $isLeap . PHP_EOL;
+//    //echo 'Year ' . $year . ' ' . isLeapYear($value) ? 'is leap ' : 'not leap year' . PHP_EOL;
+//}
 
-$yearsToCheck = [
-    '2000' => 2000,
-    '2001' => 2001,
-    '2002' => 2002,
-    '2003' => 2003,
-    '2004' => 2004,
-    '2005' => 2005,
-    '2006' => 2006,
-    '2007' => 2007,
-    '2008' => 2008,
-    '2009' => 2009,
-    '2010' => 2010,
-];
-
-foreach ($yearsToCheck as $year => $value) {
-    $isLeap = isLeapYear($value) ? 'yes' : 'no';
-    echo $year . '->' . $isLeap . PHP_EOL;
-    //echo 'Year ' . $year . ' ' . isLeapYear($value) ? 'is leap ' : 'not leap year' . PHP_EOL;
-}
-
-echo date('L', strtotime('last year')) . PHP_EOL;
+//echo date('L', strtotime('last year')) . PHP_EOL;

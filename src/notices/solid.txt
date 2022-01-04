@@ -1,0 +1,47 @@
+SOLID
+Robert Cecil Martin zaproponował 5 zasad dobrego programowania,
+ nazywane zasadami lub regułami SOLID, które stały się podstawą pisania dobrego, czystego i czytelnego kodu.
+ Wzorce projektowe dążą do jak najlepszej realizacji tych zasad.
+
+Solid jest to zbiór ogólnych zasad opisujących pięć podstawowych założeń programowania obiektowego.
+Przestrzeganie tych reguł ma na celu wytwarzanie poprawnego,
+przejrzystego i łatwo rozszerzalnego kodu,
+który jest bardziej odporny na błędy i z którym się łatwiej i wydajniej pracuje.
+
+[S] Single Responsibility Principle (SRP) –
+zasada pojedynczej odpowiedzialności – klasa powinna mieć tylko jedną odpowiedzialność
+(nigdy nie powinien istnieć więcej niż jeden powód do modyfikacji klasy).
+
+[O] Open/Closed Principle (OCP) – zasada otwarte-zamknięte – składniki oprogramowania (klasy, moduły, funkcje itp.)
+powinny być otwarte na rozbudowę, ale zamknięte dla modyfikacji
+(przy zmianie wymagań nie powinien być zmieniany stary działający kod, ale dodawany nowy, który rozszerza zachowania).
+
+[L] Liskov Substitution Principle (LSP) – zasada podstawiania Liskov –
+korzystanie z funkcji klasy bazowej musi być możliwe również w przypadku podstawienia instancji klas pochodnych.
+Klasa pochodna nie powinna zmieniać zachowaia klasy bazowej.
+
+Przyklad zlamania zasady Liskov
+
+[User korzysta z protokat]
+
+[Prostokat]
+     ^
+     |
+  [Kwadrat]
+
+
+
+Prostokat p = new Kwadrat
+p.setW (5)
+p.setH (2)
+assert(r.area == 10) // tu niegdy nie bedzie 10 bo kwadrat innaczej liczy pole niz prostokat
+
+
+[I] Interface Segregation Principle (ISP) – zasada segregacji interfejsów –
+ wiele dedykowanych interfejsów jest lepsze niż jeden ogólny,
+ reguła ta ma za zadanie przede wszystkich wyeliminowanie nieporęcznych,
+  niepotrzebnie rozbudowanych interfejsów
+
+[D] Dependency Inversion Principle (DIP) – zasada odwracania zależności –
+wysokopoziomowe moduły nie powinny zależeć od modułów niskopoziomowych,
+zależności między nimi powinny wynikać z abstrakcji.

@@ -1,0 +1,13 @@
+Require vs Include
+
+Typically the require() statement operates like include() .
+The only difference is — the include() statement will only generate
+a PHP warning but allow script execution to continue if the file to be included can't be found,
+whereas the require() statement will generate a fatal error and stops the script execution.
+
+
+Require vs Require_once
+
+The require_once() statement is identical to require()
+except PHP will check if the file has already been included,
+and if so, not include (require) it again.

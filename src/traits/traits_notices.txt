@@ -1,0 +1,6 @@
+Przykłady użycia
+
+// zmienne do polaczen z db
+// signleton do polaczen z db
+// klasy narzedziowe
+// ekstrakcja powtarzajcego sie kodu

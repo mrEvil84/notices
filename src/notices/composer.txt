@@ -7,6 +7,8 @@ lista zaleznożci
 autoload
 skrypty do uruchomienia
 pliki do załączenia
+
+
 composer.lock:
 
 tworzy się automatycznie przy pierwszej instalacji
