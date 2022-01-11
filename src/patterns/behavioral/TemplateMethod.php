@@ -1,10 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Patterns\behavioral;
+//namespace PkowerzMacwro\GitSandbox\patterns\behavioral\TemplateMethod;
 
 require_once '../../../vendor/autoload.php';
 
+// MT: logowanie i wysylanie danych do roznych api np. api fb rozni sie od twittera ale zalogowac sie trzeba do kazdego
 // Metoda szablonowa to behawioralny wzorzec projektowy według którego
 // definiuje się szkielet algorytmu w klasie bazowej i
 // pozwala klasom pochodnym nadpisać poszczególne jego etapy bez zmiany ogólnej struktury.

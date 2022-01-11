@@ -1,10 +1,110 @@
-Cross-Site Scripting (XSS)
-SQL Injection
+[PHP Object Injection]
 
-Cross Site Request Forgery (XSRF/CSRF)
--  is a type of malicious exploit of a website where unauthorized commands are submitted from a user that the web application trust
+Problemy podczas deserializaji obiektu, php serializuje tylko atrybuty metod ale nie metody.
+W tym typie ataku można zamienić wartość zserializowanego atrybutu na spreparowany aby uzyskać jakieś działanie nieporządane.
+Np. Logger który podczas deserializacji kasuje plik ze sciezki ktora jest w atrybucie.
 
-Session Hijacking
-Distributed Denial of Service (DDoS)
+
+
+[Cross-Site Scripting (XSS)]
+
+ atak polega na wstrzyknięciu do przeglądarki ofiary
+ fragmentu javascript bądź innego języka skryptowego (np. VBScript), który może być uruchomiony w przeglądarce.
+ W efekcie, atakujący ma możliwość wykonania dowolnego kodu skryptowego w przeglądarce
+ (nie mylić z uruchomieniem dowolnego kodu w systemie operacyjnym ofiary).
+
+ Czym może skutkować wykonanie kodu javascript w przeglądarce ofiary? Warto tu wspomnieć takie możliwości:
+
+ wykradanie cookies (w tym cookies sesyjnych) – tj. de facto przejęcie (zalogowanej) sesji ofiary,
+ dynamiczna podmiany zawartości strony www (np. słynne „this site have beed hacked”),
+ uruchomienie keyloggera w przeglądarce,
+ hostowanie malware-u z wykorzystaniem zaatakowanej aplikacji (np. poprzez użycie tagu iframe).
+
+
+** Persistent (inna spotykana nazwa: stored) XSS – najbardziej złowroga odmiana, polegająca na umieszczeniu
+kodu javascript po stronie serwerowej (stąd nazwa – stored).
+Przykładowo,  atakujący umieszcza javascript w komentarzu pod postem na blogu (np. komentując ten post ;)
+ a komentarz automatycznie jest wysyłany do moderacji. W momencie kiedy moderator odczytuje komentarz,
+ uruchamiany jest automatycznie javascript, który może wykradać cookie sesyjne administratora.
+ W tym momencie atakujący ma dostęp do zalogowanej sesji administracyjnej bez znajomości użytkownika oraz hasła!
+ Taka historia zresztą miała miejsce już spory czas temu w systemie WordPress,
+ gdzie udało mi się zlokalizować dokładnie taką lukę :-)
+** Reflected XSS – w tym przypadku kod javascript zaszyty jest w linku, który atakujący przesyła do ofiary.
+ Ofiara po kliknięciu na linka łączy się z aplikacją,
+ przekazując jej nieświadomie fragment HTML zawierający kod wykonujący javascript.
+  Aplikacja zwraca ofierze (stąd nazwa: reflected) wynik (tj. HTML) zawierający wcześniej podany javascript,
+  powodując wykonanie kodu w przeglądarce.
+
+
+W jaki sposób chronić się przed XSS? Przede wszystkim w odpowiedni sposób filtrować dane przesyłane przez użytkownika –
+przed ich wyświetleniem w aplikacji.
+Najczęściej przybiera to formę zamiany pewnych istotnych znaków kontrolnych HTML
+(głównie mam tu na myśli znaki otwierające / zamykające tagi oraz atrybuty tagu) na encje HTML:
+---------------------------------------------------------------------------------------------------------------------
+
+[SQL Injection]
+
+To jedna z dość częstych i jednocześnie niebezpiecznych podatności w aplikacjach webowych (oraz niewebowych).
+ Nie bez powodu SQL injection należy do pierwszej (A1) z dziesięciu kategorii błędów  wymienianych w dokumencie OWASP Top Ten.
+Już sama nazwa wskazuje na rodzaj problemu – atakujący wstrzykuje do aplikacji (nieautoryzowany) fragment zapytania SQL.
+Wstrzyknięcie zazwyczaj możliwe jest z jednego powodu – braku odpowiedniego sprawdzenia (walidacji) parametru przekazanego przez użytkownika.
+Taki parametr, gdy mamy do czynienia z SQL injection, często przekazywany jest bezpośrednio do zapytania SQL.
+
+
+W zależności od sytuacji możemy mieć do czynienia z:
+
+- nieautoryzowanym dostępem w trybie odczytu lub zapisu do całej bazy danych,
+- możliwością ominięcia mechanizmu uwierzytelnienia,
+- możliwością odczytania wybranych plików (system operacyjny, na którym pracuje baza danych),
+- możliwością tworzenia plików w systemie operacyjnym, na którym pracuje baza,
+- możliwością wykonania kodu w systemie operacyjnym (uprawnienia użytkownika, na którym pracuje baza lub web serwer – w przypadku aplikacji webowych).
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+[Cross Site Request Forgery (XSRF/CSRF)]
+
+ zmuszenie przeglądarki ofiary do wykonania pewnej nieautoryzowanej akcji (wykonania requestu HTTP).
+ Zauważmy przy okazji, że jest to atak na przeglądarkę internetową
+ (a nie część serwerową aplikacji webowej; dla serwera requesty powstałe w wyniku ataku to w pełni
+ legalna komunikacja z przeglądarki użytkownika).
+ W przypadku CSRF, system jak i przeglądarka ofiary nie są w żaden sposób trwale modyfikowane.
+ Wykorzystana jest po prostu pewna właściwość architektury web i przeglądarek internetowych.
+
+Przykład
+Chyba najlepiej uczyć się na konkretnych przykładach,
+zobaczmy więc od razu pierwszy scenariusz wykorzystania podatności CSRF,
+zmuszający przeglądarkę administratora aplikacji webowej do wykonania requestu http,
+który doda w niej nowego użytkownika.
+
+1. Atakujący rejestruje konto, podając w swoim loginie tag:
+<img src=”http://pro-forum.sekurak/admin/addUser?login=malgorzata4&pass=1234&type=adm”>
+2. Możliwe są tu również inne sposoby ataku (tag <img> to tylko przykład).
+3. Administrator loguje się oraz wchodzi na stronę z akceptowaniem nowych kont.
+4. Podczas próby pobrania obrazu z tagu <img>, przeglądarka administratora realizuje automatycznie request do panelu administracyjnego (mamy tu CSRF) – i tym samym tworzy nowe konto w systemie o uprawnieniach administracyjnym.
+5. Aby atakujący mógł się zalogować wystarczyłoby jeszcze raz wykorzystać CSRF do wykonania np. requestu usuwającego blokadę na IP użytkownika.
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+[Session Hijacking]
+
+
+Session hijacking (przechwytywanie sesji) –
+wszystkie ataki, w których włamywacz próbuje uzyskać dostęp do istniejącej sesji użytkownika,
+tzn. takich gdzie identyfikator został już wcześniej przydzielony.
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+[Distributed Denial of Service (DDoS)]
+
+Udany atak na system teleinformatyczny kojarzy się z kradzieżą lub modyfikacją danych.
+Nie musi tak być zawsze. Ataki z rodziny DoS nie uszkadzają danych —
+ich celem jest utrudnienie lub uniemożliwienie dostępu do nich — co jak się okazuje,
+może spowodować równie kosztowne straty.
+
+
+
 Brute Force Attack, Dictionary Attack
 Phishing Attack

@@ -12,3 +12,9 @@ PSR-2
 Visibility MUST be declared on all properties and methods;
 - abstract and final MUST be declared before the visibility;
 - static MUST be declared after the visibility.
+
+
+PSR-0 a PSR-4
+
+In PSR-4 autoload the path to directory will be like App\Controller\IndexController --> dir/IndexController.php.
+In PSR-0 autoload will be                            App\Controller\IndexController -->dir/App/Controller/IndexController.php.
