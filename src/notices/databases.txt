@@ -22,6 +22,13 @@ pamięć podręczna danych: tak
 pamięć podręczna indeksów: tak
 pamięć podręczna zapytań: tak
 
+Basics:
+
+* SELECT
+* INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+* UPDATE `table_name` SET `column_name` = `new_value' [WHERE condition];
+* DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
+* SELECT Country, count(PostalCode) as PostalCodeCount FROM Customers GROUP BY Country
 
 
 - Trigger

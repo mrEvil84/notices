@@ -11,7 +11,7 @@
 //
 // Kiedy stosować :
 //     1.  Stosuj wzorzec Łańcuch zobowiązań gdy twój program ma obsługiwać różne rodzaje żądań na różne sposoby, ale dokładne typy żądań i ich sekwencji nie są wcześniej znane
-//     2. tosuj ten wzorzec gdy istotne jest uruchomienie wielu obiektów obsługujących w pewnej kolejności.
+//     2.  Stosuj ten wzorzec gdy, istotne jest uruchomienie wielu obiektów obsługujących w pewnej kolejności.
 //     3.  Łańcuch zobowiązań pozwala ustawić obiekty obsługujące i ich kolejność w czasie działania programu.
 
 // Zalety:
@@ -128,7 +128,7 @@ class TextProcessor // client class
     }
 }
 
-$data = new ChainRequest('Piotr Kowerzanow');
+$requestData = new ChainRequest('Piotr Kowerzanow'); // request
 
 $ecoderHandler = new EncoderHandler();
 $dateTimeHandler = new DateTimeHandler();
@@ -137,9 +137,10 @@ $ecoderHandler->setNext(new DateTimeHandler()); // ustawienie kolejnosci wykona�
 
 
 $textProcessor = new TextProcessor($ecoderHandler);
-$processedData = $textProcessor->processData($data);
+$processedData = $textProcessor->processData($requestData);
+
 var_dump($processedData);
-var_dump($data);
+var_dump($requestData);
 
 echo '---------'.PHP_EOL;
 $textProcessor->setHandler($dateTimeHandler);

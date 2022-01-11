@@ -4,7 +4,13 @@
 
 //  Stosuj wzorzec Mediator gdy zmiana jakichś klas jest trudna z powodu ścisłego sprzęgnięcia z innymi klasami.
 //  Stosuj ten wzorzec gdy nie możesz ponownie użyć jakiegoś komponentu w innym programie, z powodu zbytniej jego zależności od innych komponentów.
-//  Stosuj wzorzec Mediator gdy zauważysz, że tworzysz mnóstwo podklas komponentu tylko aby móc ponownie użyć jakieś zachowanie w innych kontekstach.
+//  Stos
+
+// MT: analogia z życia wieża kontroli lotów oraz samoloty w przestrzeni kontrolowanej przez wieżę
+// MT: samoloty komunikuja sie ze soba za pomoca wiezy kontroli lotow ale nie wzajemnie
+
+
+
 
 interface EventType {
     public function getName();
@@ -44,10 +50,7 @@ class LoggedEvent implements EventType
 
 }
 
-interface Mediator
-{
-    public function notify(object $sender, EventType $event);
-}
+
 
 abstract class Component
 {
@@ -100,11 +103,15 @@ class ChangeDbLogger extends Component
     }
 }
 
+interface Mediator
+{
+    public function notify(object $sender, EventType $event);
+}
+
 class DbMediator implements Mediator
 {
     private ChangeDataDbComponent $writer;
     private ChangeDbLogger $logger;
-//    private
 
     public function __construct(ChangeDataDbComponent $writer, ChangeDbLogger $logger)
     {
@@ -115,20 +122,24 @@ class DbMediator implements Mediator
         $this->logger->setMediator($this);
     }
 
-
     public function notify(object $sender, EventType $event)
     {
         if ($event instanceof InsertToDbEvent) {
             $this->logger->notifyInsert($event);
             $this->writer->setState('data inserted.');
+            echo $this->writer->getState() . PHP_EOL;
         }
 
         if ($event instanceof UpdateToDbEvent) {
             $this->logger->notifyUpdate($event);
+            $this->writer->setState('data updated.');
+            echo $this->writer->getState() . PHP_EOL;
         }
 
         if ($event instanceof LoggedEvent) {
             echo $event->getName() . PHP_EOL;
+            $this->writer->setState('data logged.');
+            echo $this->writer->getState() . PHP_EOL;
         }
     }
 }
@@ -139,7 +150,7 @@ $logger = new ChangeDbLogger();
 $mediator = new DbMediator($writer, $logger);
 
 $writer->insertToDb('INSERT INTO test');
-echo $writer->getState() . PHP_EOL;
+$writer->updateToDb('UPDATE abc ');
 
 
 
