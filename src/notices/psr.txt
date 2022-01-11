@@ -1,6 +1,6 @@
 PHP Standard Recommendation – zbiór dokumentów określających różne standardy używane w języku PHP, np.:
 
-PSR-1, PSR-2 – standardy dot. kodowania
+PSR-1, PSR-2, PSR-12 – standardy dot. kodowania
 PSR-0, PSR-4 – standardy dot. autoloadingu
 
 PSR-0 działa na zasadzie struktury katalogowej, która odzwierciedla namespace’y,

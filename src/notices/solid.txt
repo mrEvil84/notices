@@ -39,8 +39,8 @@ assert(r.area == 10) // tu niegdy nie bedzie 10 bo kwadrat innaczej liczy pole n
 
 [I] Interface Segregation Principle (ISP) – zasada segregacji interfejsów –
  wiele dedykowanych interfejsów jest lepsze niż jeden ogólny,
- reguła ta ma za zadanie przede wszystkich wyeliminowanie nieporęcznych,
-  niepotrzebnie rozbudowanych interfejsów
+ reguła ta ma za zadanie przede wszystkim wyeliminowanie nieporęcznych,
+ niepotrzebnie rozbudowanych interfejsów
 
 [D] Dependency Inversion Principle (DIP) – zasada odwracania zależności –
 wysokopoziomowe moduły nie powinny zależeć od modułów niskopoziomowych,

@@ -26,12 +26,20 @@ require_once 'WeekDayTranslator.php';
 
 //echo 'Years from beginning : ' . $yearsFromBeginning . PHP_EOL;
 
-//$hourInSeconds = 60 * 60;
+$hourInSeconds = 60 * 60;
 //$dayInSeconds = 60 * 60 * 24;
 //
 //$actualDateTime = date('l Y-m-d H:i:s ');
 //echo 'Actual date and time : ' . $actualDateTime . PHP_EOL;
 //print_r('Yesterday date and time : ' . date('Y-m-d D H:i:s', time() - $dayInSeconds));
+
+$time = time();
+$date = date('Y-m-d H:i:s', $time);
+var_dump($date);
+// add 2 hours
+$time += $hourInSeconds * 2;
+$date = date('Y-m-d H:i:s', $time);
+var_dump($date);
 
 
 // microtime ()

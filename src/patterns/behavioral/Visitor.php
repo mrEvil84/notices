@@ -5,7 +5,7 @@ require_once '../../../vendor/autoload.php';
 // Visitor, Odwiedzający
 
 // Odwiedzający to behawioralny wzorzec projektowy pozwalający oddzielić algorytmy od obiektów na których pracują.
-// Hisotryjka z architektektem co nie pozwala ruszyc klas na produckji a maja byc tworzone xmle z nich
+// MT: Hisotryjka z architektektem co nie pozwala ruszyc klas na produckji a maja byc tworzone xmle z nich
 
 // Kiedy stosowac :
 // 1. Stosuj wzorzec Odwiedzający gdy istnieje potrzeba wykonywania jakiegoś działania na wszystkich elementach
@@ -33,6 +33,8 @@ interface Element
     public function getData(): array;
     public function accept(Visitor $visitor);
 }
+
+// drogocenne obiekty gdzie dodalismy tylko metode odpalajaca wizytora
 
 class Invoice implements Element
 {
@@ -67,7 +69,6 @@ class Invoice implements Element
             'value' => $this->value,
         ];
     }
-
 
 }
 
@@ -126,7 +127,6 @@ class XMLExportVisitor implements Visitor
 {
     public function visitInvoice(Invoice $element): string
     {
-
         return ArrayToXml::convert($element->getData());
     }
 
