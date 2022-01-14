@@ -1,0 +1,2 @@
+
+    phpunit InputSanitizerTest.php -c ../../phpunit.xml --filter "testSanitize"

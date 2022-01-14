@@ -1,0 +1,7 @@
+How to add to path in mac osx : ( if you use zsh )
+
+1. cd ~
+2. touch .zshrc (if not exists)
+3. add in file:  export PATH=$PATH:/Users/pkowerz-macwro/.composer/vendor/bin
+4. save
+5. source .zshrc

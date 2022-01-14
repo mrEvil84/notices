@@ -1,19 +1,24 @@
 <?php
 
+namespace PkowerzMacwro\GitSandbox\magicalMethods;
+
 class Vehicle
 {
     public string $type;
     public int $number;
 
 
-    public function __sleep() : array
+    public function __sleep(): array
     {
+        echo '__sleep ... ' . PHP_EOL;
         return ['type', 'number'];
 //        return ['type'];
     }
 
-    public function __wakeup() {
-        echo '[ Unserialized : ]-> ' . $this->type . ' ' .$this->number . PHP_EOL;
+    public function __wakeup()
+    {
+        echo '__wakeup ...' . PHP_EOL;
+        echo '[ Unserialized : ]-> ' . $this->type . ' ' . $this->number . PHP_EOL;
     }
 
     public function __toString(): string
