@@ -13,5 +13,6 @@ class ChangeDbLoggerComponent extends Component
     public function notifyUpdate(EventType $changeDbType): void
     {
         echo 'ChangeDbNotifier: data were updated in db' . PHP_EOL;
+        $this->mediator->notify($this, new UpdateToDbEvent());
     }
 }

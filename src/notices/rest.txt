@@ -1,4 +1,5 @@
-REST – Representational State Transfer – styl architektury oprogramowania opierający się o zbiór wcześniej określonych reguł opisujących jak definiowane są zasoby, a także umożliwiających dostęp do nich.
+REST – Representational State Transfer – styl architektury oprogramowania opierający się o zbiór wcześniej określonych
+reguł opisujących jak definiowane są zasoby, a także umożliwiających dostęp do nich.
 
 API – Application Programming Interface – zestaw reguł definiujący komunikację pomiędzy programami komputerowymi.
 
@@ -16,9 +17,9 @@ PATCH	    Update/Modify, The PATCH request only needs to contain the changes to 
 
 Zasady REST:
 
-Odseparowanie interfejsu użytkownika od operacji na serwerze
-Bezstanowość
-Cacheability – odpowiedź, którą użytkownik otrzyma z REST API musi jasno definiować, czy ma jest cacheable czy non-cacheable
-Endpointy reprezentujące zasoby
-Separacja warstw
+* Odseparowanie interfejsu użytkownika od operacji na serwerze
+* Bezstanowość
+* Cacheability – odpowiedź, którą użytkownik otrzyma z REST API musi jasno definiować, czy ma jest cacheable czy non-cacheable
+* Endpointy reprezentujące zasoby
+* Separacja warstw
 

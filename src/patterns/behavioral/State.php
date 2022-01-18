@@ -3,13 +3,33 @@
 
 // MT: wzorzec stan przechowuje stan obiektu w danej chwili, np. stan dokumentu w stanie Draft
 
+// Kiedy stosowac
+
+// 1. Stosuj wzorzec Stan gdy masz do czynienia z obiektem którego zachowanie jest zależne od jego stanu,
+// liczba możliwych stanów jest wielka, a kod specyficzny dla danego stanu często ulega zmianom.
+
+// 2. Stosuj ten wzorzec gdy masz klasę zaśmieconą rozbudowanymi instrukcjami warunkowymi zmieniającymi
+// zachowanie klasy zależnie od wartości jej pól.
+
+// 3. Wzorzec Stan pomaga poradzić sobie z dużą ilością kodu który się powtarza w wielu stanach i przejściach
+//  między stanami automatu skończonego, bazującego na instrukcjach warunkowych.
+
+// Zalety:
+// 1. Zasada pojedynczej odpowiedzialności. Zorganizuj kod związany z konkretnymi stanami w osobne klasy.
+// 2. Zasada otwarte/zamknięte. Można wprowadzać nowe stany bez zmiany istniejących klas stanu lub kontekstu.
+// 3. Upraszcza kod kontekstu eliminując obszerne instrukcje warunkowe automatu skończonego.
+
+// Wady:
+// 1. Zastosowanie tego wzorca może być przesadą jeśli mamy do czynienia zaledwie z kilkoma stanami i rzadkimi zmianami.
+
+
+
 abstract class State
 {
     protected Document $document;
 
     public function setDocument(Document $document): void
     {
-
         $this->document = clone $document;
     }
 
@@ -48,8 +68,7 @@ class ReadyToPublish extends State
 
 class Document
 {
-    private State $state;
-    private string $data;
+    private string $data = '';
 
     public function __construct(State $state)
     {
@@ -65,7 +84,6 @@ class Document
     {
         unset($this->state);
         $this->state = $state;
-        $this->state->setDocument($this);
     }
 
     public function getCurrentState(): State

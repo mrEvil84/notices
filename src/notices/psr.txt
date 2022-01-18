@@ -4,7 +4,8 @@ PSR-1, PSR-2, PSR-12 – standardy dot. kodowania
 PSR-0, PSR-4 – standardy dot. autoloadingu
 
 PSR-0 działa na zasadzie struktury katalogowej, która odzwierciedla namespace’y,
-PSR-4 pozwala na dostosowanie tego, wielkosc liter w sciezce ma znaczenie ,
+PSR-4 pozwala na dostosowanie struktury katalogowej podczas autoloadingu,
+      wielkosc liter w sciezce ma znaczenie ,
       można mieć wiele ścieżek do wielu projektow , np kilka prefiksow do kilku katalogow
       mozna do jednego prefiksu dodawac po kilka sciezek
 
@@ -23,15 +24,16 @@ In PSR-4 autoload the path to directory will be like App\Controller\IndexControl
 In PSR-0 autoload will be                            App\Controller\IndexController -->dir/App/Controller/IndexController.php.
 
 
-W nowszym standardzie plik może być w kilku lokalizacjach. Korzystamy też z kolejki autoloaderów.
+* W nowszym standardzie plik może być w kilku lokalizacjach. Korzystamy też z kolejki autoloaderów.
 
-Nazwy klas zapisujemy identycznie jak w PSR-0 ale znak podkreślenia nie ma już specjalnego znaczenia. Zrywamy więc z kompatybilnością z PHP 5.2 i starszymi.
+* Nazwy klas zapisujemy identycznie jak w PSR-0 ale znak podkreślenia nie ma już specjalnego znaczenia. Zrywamy więc z kompatybilnością z PHP 5.2 i starszymi.
 
-Najważniejsza zmiana to sposób traktowania ścieżki do projektu.
-Tym razem zamiast jednej możemy mieć wiele ścieżek, każda zdefiniowana dla jakiegoś prefiksu nazwy klasy. Np.
+* Najważniejsza zmiana to sposób traktowania ścieżki do projektu.
+* Tym razem, zamiast jednej możemy mieć wiele ścieżek, każda zdefiniowana dla jakiegoś prefiksu nazwy klasy. Np.
 
 \Adam\ProjektPierwszy => /vendor/Adam/ProjektA/src/php
 \Adam\ProjektDrugi => /vendor/Adam/ProjektB/classes/
+
 Co więcej, możemy przypisać kilka ścieżek do jednego prefiksu:
 
 \Adam\ModułPierwszy => /vendor/Adam/ProjektA/src/php

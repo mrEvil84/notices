@@ -24,6 +24,11 @@ interface Memento
     public function restore(): object;
 }
 
+interface Originator
+{
+    public function save(): Memento;
+}
+
 class Apple implements Originator
 {
     private string $name;

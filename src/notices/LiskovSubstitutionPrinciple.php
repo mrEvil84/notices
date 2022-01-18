@@ -4,7 +4,7 @@
 // przyklad zlamania zasady liskov
 
 
-class Rectangle
+class Rectangle // prostokąt
 {
     protected float $width;
     protected float $height;
@@ -94,7 +94,7 @@ class NewSquare implements Figure
 
     public function getArea(): float
     {
-        return pow($this->sideLength, 2);
+        return $this->sideLength ** 2; // pow($this->sideLength, 2);
     }
 }
 

@@ -1,7 +1,9 @@
 SOLID
+
 Robert Cecil Martin zaproponował 5 zasad dobrego programowania,
- nazywane zasadami lub regułami SOLID, które stały się podstawą pisania dobrego, czystego i czytelnego kodu.
- Wzorce projektowe dążą do jak najlepszej realizacji tych zasad.
+nazywane zasadami lub regułami SOLID, które stały się podstawą pisania dobrego, czystego i czytelnego kodu.
+
+Wzorce projektowe dążą do jak najlepszej realizacji tych zasad.
 
 Solid jest to zbiór ogólnych zasad opisujących pięć podstawowych założeń programowania obiektowego.
 Przestrzeganie tych reguł ma na celu wytwarzanie poprawnego,

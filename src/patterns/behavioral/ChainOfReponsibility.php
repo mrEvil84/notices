@@ -68,10 +68,10 @@ abstract class BaseHandler implements Handler
     public function handle(ChainRequest $chainRequest): ?ChainRequest
     {
         if ($this->nextHandler !== null) {
-            echo '->base handler : next handler present ' . PHP_EOL;
+            echo '->base handler : next handler set ' . PHP_EOL;
             return $this->nextHandler->handle($chainRequest);
         } else {
-            echo '->base handler : next handler not present, return data :' . PHP_EOL;
+            echo '->base handler : next handler not set, return data :' . PHP_EOL;
         }
 
         return $chainRequest;
@@ -130,22 +130,20 @@ class TextProcessor // client class
 
 $requestData = new ChainRequest('Piotr Kowerzanow'); // request
 
-$ecoderHandler = new EncoderHandler();
-$dateTimeHandler = new DateTimeHandler();
-
-$ecoderHandler->setNext(new DateTimeHandler()); // ustawienie kolejnosci wykonań
+$encoderHandler = new EncoderHandler();
+$encoderHandler->setNext(new DateTimeHandler()); // ustawienie kolejnosci wykonań
 
 
-$textProcessor = new TextProcessor($ecoderHandler);
+$textProcessor = new TextProcessor($encoderHandler);
 $processedData = $textProcessor->processData($requestData);
 
 var_dump($processedData);
 var_dump($requestData);
 
 echo '---------'.PHP_EOL;
-$textProcessor->setHandler($dateTimeHandler);
+$textProcessor->setHandler(new DateTimeHandler());
 $test2 = $textProcessor->processData(new ChainRequest('testetstststststs'));
-//$textProcessor->setHandler($dateTimeHandler);
+
 var_dump($test2);
 
 

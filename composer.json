@@ -5,7 +5,11 @@
     "autoload": {
         "psr-4": {
             "PkowerzMacwro\\GitSandbox\\": "src/",
-            "Patterns\\": "src/patterns"
+            "Patterns\\": "src/patterns",
+            "PsrSandbox\\": [
+                "src/psrSandbox/project1",
+                "src/psrSandbox/project1Classes"
+            ]
         }
     },
     "authors": [
@@ -21,10 +25,12 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9",
+        "vimeo/psalm": "^4.18"
     },
     "scripts": {
         "phpcs": "phpcs --standard=PSR12",
-        "phpunit": "phpunit tests -c phpunit.xml"
+        "phpunit": "phpunit tests -c phpunit.xml",
+        "psalm": "./vendor/bin/psalm --config=psalm.xml"
     }
 }

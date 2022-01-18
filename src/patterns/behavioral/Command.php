@@ -72,7 +72,7 @@ class SaveCommand implements Command
 
 }
 
-class OpenCommand implements Command
+class OpenFileCommand implements Command
 {
     public function execute(string $params): void
     {
@@ -89,7 +89,7 @@ class PrintCommand implements Command
 }
 
 $button = new Button();
-$button->setCommand(new OpenCommand());
+$button->setCommand(new OpenFileCommand());
 $button->execute('C:\\path\\file.txt');
 $button->setCommand(new SaveCommand(new SaveService('mysql')));
 $button->execute('*** some string ***');

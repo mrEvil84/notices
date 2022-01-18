@@ -1,0 +1,14 @@
+crontab -l  == list
+
+*     *     *     *     *  komenda do wykonania
+^     ^     ^     ^     ^
+|     |     |     |     |
+|     |     |     |     +----- dzień tygodnia (0 - 7) (niedziela=0, poniedziałek=1, wtorek=2, ..., niedziela=7)
+|     |     |     |
+|     |     |     +------- miesiąc (1 - 12)
+|     |     |
+|     |     +--------- dzień miesiąca (1 - 31)
+|     |
+|     +----------- godzina (0 - 23)
+|
++------------- minuta (0 - 59)

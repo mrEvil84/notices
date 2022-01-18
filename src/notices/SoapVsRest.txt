@@ -1,0 +1,50 @@
+** REST zajmuje się bardziej operacjami,
+które można wykonywać na jednostkach sieciowych.
+SOAP koncentruje się na zdalnym dostępie do obiektów i manipulowaniu nimi.
+
+** SOAP używa XML i zapewnia zestaw funkcji,
+które pozwalają definiować umowy między konsumentami a dostawcami,
+co jest bardzo cenne w świecie biznesu
+
+** Nie używajmy SOAP w sytuacjach, w których przepustowość jest bardzo ograniczona.
+Musi on przekazywać informacje o obiektach i ich stanach za pomocą XML Infoset
+
+SOAP - Simple Object Access Protocol : https://www.developer.net.pl/ogolne/rest-vs-soap/
+
+- stanowy protokół, wspiera transakcje
+- bazuje na jezyku xml
+- umożliwia wywoływanie zdalnych komponentow (metod, funkcji)
+- Do opisu funkcjonalności API stosuje się Web Services Description Language (WSDL)
+
+REST - Representational State Transfer
+
+Representational State Transfer jest standardem określającym zasady
+projektowania API gdzie akcje CRUD (create, read, update, delete) odpowiadają metodom POST, GET, PUT i DELETE.
+REST nie wymaga WDSL oraz UDDI, oparty jest natomiast o kilka zasad, takich jak:
+
+- Jednolity interfejs do komunikacji między klientem a serwerem
+1. Intefejs oparty jest na zasobach
+2. Manipulację zasobami realizuje się poprzez jego reprezentacje
+3. Odpowiedzi serwera do klienta są samo opisujące się
+
+- Client-Server
+Określa wyraźnie zaznaczony podział pomiędzy logiką działającą po stronie serwera oraz klienta,
+tak żeby edycja jednego nie wpływała na działanie drugiej „strony"
+
+- Stateless
+Zasada ta określa że serwer nie powinien przechowywać informacji o stanie klienta.
+ Każde zapytanie powinno być kompletne pod kątem informacji potrzebnych do jego przetworzenia.
+
+- Cacheable
+ Api powinno wspierać cache’owanie aby poprawić wydajność.
+  Z reguły dla operacji odczytu istnieje możliwość cache’owania danych,
+  natomiast dla operacji modyfikacji danych nie zaleca się stosowania takiego mechanizmu.
+
+- Layered system
+Podczas projektowania systemu należy zwrócić uwagę na to iż klient wysyłający zapytanie powinien uzyskać
+odpowiedź od pytanego serwera. To powinno odbywać się bez posiadania wiedzy o tym co się dzieję „pod spodem”.
+ Na przykład w sytuacji gdy serwer odpytuje inne zewnętrzne serwery takie ja Google itp..
+
+- Code on demand
+ Jest to zasada opcjonalna która zakłada możliwość wysyłania kodu,
+ który możemy wykonać po stronie klienta (często JavaScript).
