@@ -19,3 +19,4 @@ foreach ($g as $value) {
 $a = [1,2,3,4];
 $id = array_shift($a);
 var_dump($id);
+var_dump($a);

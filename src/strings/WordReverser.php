@@ -5,9 +5,9 @@ namespace PkowerzMacwro\GitSandbox\strings;
 
 class WordReverser
 {
-    public static function getReversed(string $test, string $separator = " "): string
+    public static function getReversed(string $text, string $separator = " "): string
     {
-        $exploded = explode($separator, $test);
+        $exploded = explode($separator, $text);
 
         $reversedWords = [];
         foreach ($exploded as $word) {

@@ -1,2 +1,16 @@
 CQRS - Command Query Responsibility Segregation
 DDD - Domain Driven Design
+
+
+Zanim przejdziemy do kodu warto rozwinąć skrót CQRS, Command Query Responsibility Segregation.
+Wzorzec opisał, przedstawił i prawdopodobnie wymyślił Greg Young.
+
+Krótko mówiąc, celem tego wzorca jest rozdzielenie modelu służącego do zmiany stanu systemu
+od modelu służącego do odczytywania stanu systemu.
+
+Wzorzec ten powstał prawdopodobnie na bazie pojęcia Command Query Separation.
+Pojęcie to z kolei wywodzi się z podstaw programowania obiektowego, mówi ono że,
+metody obiektu można podzielić na dwa typy.
+
+Query - pozwalające uzyskać informację o obiekcie, odczytać go
+Commands - pozwalające wykonać operacje na obiekcie, zmodyfikować go

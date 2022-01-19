@@ -103,6 +103,7 @@ A: The table which uses a hashed index and stores in the memory is called the HE
 
 Q: How can you add and remove any column of a table?
 A: ALTER TABLE table_name ADD COLUMN column_name column_definition [FIRST|AFTER existing_colu
+   ALTER TABLE table_name DROP COLUMN column_name;
 
 Q: What is an index? How can an index be declared in MySQL?
 A: An index is a data structure of a MySQL table that is used to speed up the queries.
@@ -117,16 +118,22 @@ CREATE TABLE users(
 SHOW INDEXES FROM users;
 
 Q: Jakie tabele i kolumny należy indeksować?
-A: Korzyść wydajnościowa ze stosowania indeksów jest największa w przypadku dużych tabel (zawierających najwięcej rekordów) oraz zapytań, które wykonywane są najczęściej. W MySQL i w innych RDBMS zaleca się indeksować następujące kolumny:
+A: Korzyść wydajnościowa ze stosowania indeksów jest największa w przypadku dużych tabel
+  (zawierających najwięcej rekordów) oraz zapytań,
+  które wykonywane są najczęściej.
+  W MySQL i w innych RDBMS zaleca się indeksować następujące kolumny:
 
-kolumny najczęściej padające po słowie WHERE,
-kolumny dwóch tabel, które często łączymy,
-kolumny, według których sortujemy dane w raportach (kolumny padające po słowie ORDER BY i GROUP BY),
-kolumny które często zliczamy (SUM(), AVG(), MIN(), MAX(), COUNT())
-klucze obce i kolumny, których będziemy używać tak jak kluczy obcych,
-klucze niepowtarzalne UNIQUE_KEY (typu NIP, PESEL itd…),
-FULLTEXT w przypadku częstej potrzeby przeszukiwania tekstu.
-Można się kierować prostą zasadą, polegającą na tym, że nie tworzymy indeksu jeżeli nie jesteśmy przekonani, że faktycznie będziemy z niego korzystać.
+- kolumny najczęściej padające po słowie WHERE,
+- kolumny dwóch tabel, które często łączymy,
+- kolumny, według których sortujemy dane w raportach (kolumny padające po słowie ORDER BY i GROUP BY),
+- kolumny które często zliczamy (SUM(), AVG(), MIN(), MAX(), COUNT())
+- klucze obce i kolumny, których będziemy używać tak jak kluczy obcych,
+- klucze niepowtarzalne UNIQUE_KEY (typu NIP, PESEL itd…),
+- FULLTEXT w przypadku częstej potrzeby przeszukiwania tekstu.
+
+[i]
+[Można się kierować prostą zasadą, polegającą na tym, że nie tworzymy indeksu jeżeli,
+ni  e jesteśmy przekonani, że faktycznie będziemy z niego korzystać.]
 
 
 Q: Których kolumn nie należy indeksować?
@@ -135,21 +142,28 @@ A: często aktualizowanych danych tym bardziej w tabelach InnoDB.
 Należy pamiętać, że indeks drastycznie spowalnia dodawanie,
 modyfikowanie i usuwanie danych, ponieważ indeksy muszą być aktualizowane za każdym razem,
 gdy tabela ulega nawet najmniejszej modyfikacji.
-Najlepszą praktyką jest dodanie indeksu dla wartości, które są często używane do wyszukiwania, ale nie ulegają częstym zmianom.
+
+[ii]
+Najlepszą praktyką jest dodanie indeksu dla wartości,
+które są często używane do wyszukiwania, a
+le nie ulegają częstym zmianom.
 
 Q: What is the view? How can you create and drop view in MySQL?
-A: A view works as a virtual table that is used to store query and returns a result set when it is called. An updatable view is also supported by MySQL.
+A: A view works as a virtual table that is used to store query and returns a result set when it is called.
+An updatable view is also supported by MySQL.
 
 Q: What is the function of mysqldump?
-A: mysqldump is a useful utility tool of MySQL that is used to dump one or more or all databases from the server for backup or transfer to another database server.
+A: mysqldump is a useful utility tool of MySQL that is used to dump one or more or all databases
+from the server for backup or transfer to another database server.
 
 Q: How can you change the password of a MySQL user?
 A: SET PASSWORD FOR ‘username’@’hostname’ = PASSWORD(‘password’);
 
 Q: What is the difference between UNIX TIMESTAMP and MySQL TIMESTAMP?
 A: Both UNIX TIMESTAMP and MySQL TIMESTAMP are used to represent the date and time value.
-   The main difference between these values is that UNIX TIMESTAMP represents the value by using 32-bits integers
-   and MySQL TIMESTAMP represents the value in the human-readable format.
+   The main difference between these values is that
+   - UNIX TIMESTAMP represents the value by using 32-bits integers
+   - MySQL TIMESTAMP represents the value in the human-readable format.
 
 EG: SELECT FROM_UNIXTIME (1596222320) AS 'MySQLTIMESTAMP';
     SELECT UNIX_TIMESTAMP ('2018-12-25 09:45:40') AS 'UNIXTIMESTAMP';

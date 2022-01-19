@@ -1,0 +1,4 @@
+
+    "The code structure should reflect architectural intent."
+
+

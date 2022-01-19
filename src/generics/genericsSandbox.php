@@ -24,9 +24,10 @@ class Foo
 {
     /**
      * @param Collection<Dog> $dogs
+     * @return Collection
      */
-    public function setCollection(Collection $dogs)
+    public function setCollection(Collection $dogs): Collection
     {
-        return $input;
+        return $dogs;
     }
-}
+} 
