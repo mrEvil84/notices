@@ -1,4 +1,4 @@
-owasp-top10-2021
+owasp top10-2021
 
 AO1-2021:-Broken Access Controll - podatnosci z autoryzacja i rolami w aplikacji
 A02-2021:-Cryptographic Failures - np. zatwardowklepany klucz jwt (json web token)
@@ -117,7 +117,117 @@ Jak się bronić :
 
 * Ogranicz zużycie zasobów przez użytkownika lub usługę
 
+
+
+
 A05:2021 – Security Misconfiguration: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
 
+Aplikacja może być zagrożona, jeśli aplikacja jest:
+
+* Brak odpowiedniego wzmocnienia zabezpieczeń w dowolnej części stosu aplikacji lub nieprawidłowo skonfigurowane
+  uprawnienia w usługach w chmurze.
+* Włączone lub zainstalowane są niepotrzebne funkcje
+  (np. niepotrzebne porty, usługi, strony, konta lub uprawnienia).
+* Konta domyślne i ich hasła są nadal włączone i niezmienione.
+* Obsługa błędów ujawnia użytkownikom ślady stosu lub inne zbyt pouczające komunikaty o błędach.
+* W przypadku zaktualizowanych systemów najnowsze funkcje zabezpieczeń są wyłączone lub nie są bezpiecznie skonfigurowane.
+* Ustawienia zabezpieczeń na serwerach aplikacji, frameworkach aplikacji (np. Struts, Spring, ASP.NET),
+  bibliotekach, bazach danych itp. nie są ustawione na bezpieczne wartości.
+* Serwer nie wysyła nagłówków ani dyrektyw bezpieczeństwa lub nie są one ustawione na bezpieczne wartości.
+
+Jak zapobiegać:
+* stosować powtarzalny proces deploy na róznych środowiiskach , srodowiska powinny byc skonfigurowane identycznie
+  ale różnić się credentialami
+* usuwać nieużywane składniki frameworków, komponentów etc. nic co nie jest potrzebne lepiej żeby nie było zainstalowane
+* dbać o rewiew konfiguracji oraz uaktualnienia i aktualizacje security
+* architektura segmentowa pomaga w zapewnieniu bezp.
+* zautomatyzowany proces do weryfikacji efektywności configuracji oraz ustawień na wszystkich środowiskach
 
 
+
+Ad A06:2021 – Vulnerable and Outdated Components: https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
+
+Every organization must ensure an ongoing plan for monitoring, triaging, and applying updates or configuration changes for the lifetime of the application or portfolio.
+
+Jesteś podatny gdy:
+* nie wiesz jakich wersji uzywach po stronie serwerowej i w aplikacji
+* uzywane oprogramowanie ktorego uzywasz jest w starej wersji lub niewspierane
+* jesli nie śledzisz biuletynów o podatnosciach swojego opogramowania
+* jesli nie aktualizujesz swojego oprogramowania , frameworkiserwery etc.
+* jesli software dev nie testuja kompatybilnosci z aktualizacjami bibliotek ktore stosują
+* jesli nie dbasz o zabezpieczenie konfiguracji
+
+Jak zapobiegac :
+* usun nieużywane zależnosci z kodu , stare nieużywane kompondnty, pliki, dokumentacje etc.
+* prowadz ciagla inwentaryzacje versji swojego oporogramowania , uzywanego i wytwarzanego
+* uzysuj komponenty wspierajace tylko z oficjalnych zrodel , najlepiej jeszcze jak sa podpisane certami.
+* monitoruj komponenty pod katem aktualizacji, patch-y i poprawek
+
+
+
+Ad A07:2021 – Identification and Authentication Failures : https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/
+
+Aplikacja jest podatna gdy:
+* pozwala na ataki typu słownikowego
+* pozawa na ataki typu brute force
+* pozwala na tworzenie slabych loginow i/lub haseł typu: Password1
+* używa słabych lub nieefektywnych narzędzi do przywracania haseł
+* przechowuje hasla i loginy plain textem lub slabo hashowanym algo.
+* id sesji jest widoczny w urlu (!)
+* nie ma wieloetapowego procesu autentykacji
+* reużycie id sesji po sukcesie logowania
+* po zakonczeniu sesji niepoprawne usuwanie id sesji oraz/lub/i tokenów itd.
+
+Jak zapobiegać:
+
+* gdy to możliwe używać wieloetapowego procesu logowania - autentykacji
+* nie rób deploy z haslem i loginem admina
+* zaimplementuj sprawdzanie wspisywanych hasel pod katem "the top 10000 weak passwords"
+* wprowadz koniecznosc wpisywania dluzszego hasla , zastosuj polityke zmian hasel w odstepach czasu
+* zapewnij bezpieczenstwo rejestracji usera, odzyskiwania hasel
+* zaimplementuj limit nieudanych logowań ale nie przesadź żeby nie wyszo że cieżko się dostać do aplikacji np 10 prób
+nieudane próby logowania monitoruj jesli przekroczhy limit logowan powiadamianie admina etc.
+* uzywanie sesji po stronie serwera, identyfikator sesji nie moze byc widoczny w url-ach
+
+
+
+
+Ad A08:2021 – Software and Data Integrity Failures : https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
+
+Podatność zwiazana z CI/CD , jak użwasz narzędzia CI/CD i/lub pluginow do CI/CD z nieznanych źródeł to ktoś może się wbić
+na pipeliny, podłożyc jakiegoś exploita etc.
+
+Jak zapobiegać :
+
+* używanie podpisów lub czegoś podobnego że soft jest z pewnego źródła do CI/CD
+* zapewnienie że biblioteki / zależności są pobierane z zaufanych repo
+* zapewnienie że używane biblioteki / komponenty nie mają znanych podatności
+* zapewnienie review i review konfiguracji kodu
+* CI/CD pipeline ma miec wlasciwą segregację, configurację i kontrolę dostępu aby przeprowadzac bezpieczny proces budowy
+ np. stosowac innego niz admin usera do wykonywania buildow
+* nie wysyłan niezabezpieczonych / niezaszyfrowanych danch podczas buildu
+
+
+
+
+A09:2021 – Security Logging and Monitoring Failures: https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/
+
+Returning to the OWASP Top 10 2021, this category is to help detect, escalate, and respond to active breaches.
+Without logging and monitoring, breaches cannot be detected.
+Insufficient logging, detection, monitoring, and active response occurs any time:
+
+Niewystarczające logowanie, albo jego brak, nie wiadomo co się dzieje w aplikacji. Jakie spadają błędy.
+Aplikacja jest podatna gdy nie ma logowania :
+* logowań userów, nieudanych logowań , transakcji wysokowartościowych - dziwnych
+* błędów i warningów
+* logi są przechowywane lokalnie (!)
+* pentesty nie wszczynają alarmów w monitoringu
+* aplikacja nie potrafi wykryć ataków, wyeskalowac i zawiadomić o nich
+
+Jak przeciwdziałać :
+* zapewnienie logowania : loginów , dostępów, błędów , warningów etc.
+* logi mają być w formacie łatwym do "zjedzenia" przez aplikacje nadzorujące
+* dane logów maja byc zabezpieczone lub zanonimizowane
+* duże transakcje np. w db np. usuwanie wszystkiego powinny być podejżane i zgłaszane
+* dev ops ma możliwoś aktywnego śledzenia tego co się dzieje w systemie
+* mieć plan naprawczy na wypadek przywracania danych
