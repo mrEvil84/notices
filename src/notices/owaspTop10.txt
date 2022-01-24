@@ -116,3 +116,8 @@ Jak się bronić :
 * Solidnie segreguj najemców zgodnie z projektem na wszystkich poziomach
 
 * Ogranicz zużycie zasobów przez użytkownika lub usługę
+
+A05:2021 – Security Misconfiguration: https://owasp.org/Top10/A05_2021-Security_Misconfiguration/
+
+
+
