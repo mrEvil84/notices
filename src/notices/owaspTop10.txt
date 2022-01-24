@@ -231,3 +231,47 @@ Jak przeciwdziałać :
 * duże transakcje np. w db np. usuwanie wszystkiego powinny być podejżane i zgłaszane
 * dev ops ma możliwoś aktywnego śledzenia tego co się dzieje w systemie
 * mieć plan naprawczy na wypadek przywracania danych
+
+
+
+
+
+A10:2021 – Server-Side Request Forgery (SSRF) :  https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
+
+Wykonywanie zadań po stronie serwera, nieporządanych zadań, np.
+
+ mechanizmów pozwalających pobierać pliki z zewnętrznych źródeł,
+ niezależnie od języka programowania, więc można go spotkać w PHP, Pythonie, Javie itp.
+Chodzi mianowicie o adresy prowadzące do plików na lokalnym dysku twardym, tj. np. file:///etc/passwd.
+Jeśli aplikacja nie zabezpieczy się w żaden sposób przed wykonywaniem tego typu żądań i pozwala na wyświetlanie zawartości pobranego pliku,
+ze strony atakującego jest to „easy-win”, bo zyskuje w ten sposób podatność pozwalającą na pobieranie dowolnych plików z dysku,
+na którym zahostowana jest aplikacja. W zależności od użytej technologii mogą być też dostępne inne schematy URL-i,
+które pozwolą na osiągnięcie tego samego efektu.
+W przypadku Javy, na przykład, pliki z dysku można też pobrać URL-em: netdoc://etc/passwd.
+
+Jak zabezpieczać ?
+
+From Network layer
+* Segment remote resource access functionality in separate networks to reduce the impact of SSRF
+* Enforce “deny by default” firewall policies or network access control rules to block all but essential intranet traffic.
+
+From Application layer:
+* Sanitize and validate all client-supplied input data
+* Enforce the URL schema, port, and destination with a positive allow list
+* Do not send raw responses to clients
+* Disable HTTP redirections
+* Be aware of the URL consistency to avoid attacks such as DNS rebinding and “time of check, time of use” (TOCTOU) race conditions
+
+
+Stąd wypływa wniosek, że jedyną prawdziwie skuteczną metodą ochrony przed skanowaniem sieci lokalnej
+jest ustawienie odpowiednich reguł na firewallach.
+Host, z którego będą wykonywane żądania,
+powinien mieć zablokowaną możliwość wykonywania połączeń wychodzących do innych maszyn w LAN-ie.
+
+Podatność Server-Side Request Forgery (SSRF) pozwala osobom przeprowadzającym ataki z
+Internetu na wykonywanie skanowania lub pobierania zasobów z sieci lokalnej.
+Ochrona przed tego typu atakami nie jest prosta.
+ Przede wszystkim nie należy pozwalać na pobieranie zasobów ze schematów innych niż http/https.
+ Ponadto, najlepiej posiadać w sieci lokalnej specjalny host,
+ z którego będą wykonywane zapytania do zewnętrznych serwerów,
+  i w konfiguracji firewalla uniemożliwić temu hostowi wykonywanie połączeń wychodzących do innych hostów w sieci lokalnej.
