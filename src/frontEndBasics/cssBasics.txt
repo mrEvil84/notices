@@ -1,0 +1,72 @@
+CSS - Cascading Style Sheets
+
+p {
+    color: red;
+  }
+
+  // p - selector
+  // color - property
+  // red - prop. value
+
+p,li,h1  {
+    color: red;
+    width: 20px;
+}
+// dołanczanie :
+
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+
+// selektory:
+
+p           - <p>                                                       #selektor elementu
+#my-id      - <p id='my-id'>                                            # selektor id
+.my-class   - <p class='my-class> lub <div class='my-class'> lub ...    # selektor klasy
+img[src]    - <img src=""> a nie <img>                                  # selektor atrybutu
+a:hover     - wybiera a ale tylko gdy kursor jest nad elementrem        # selektor pseudo-klasy
+
+// podlanczanie czcionek
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+html {
+  font-size: 10px;
+  font-family: placeholder; /* tu powinnien być font-family wygenerowany w Google fonts */
+}
+
+// [i] :  O większości elementów na stronie możesz myśleć jak o pudełkach stawianych jedne na drugim.
+
+<div>
+
+padding, przestrzeń wokół elementu (np. wokół paragrafu tekstu)
+border, obramowanie poza padding-iem
+margin, przestrzeń wokół zewnętrznej części elementu
+
+width, szerokość elementu,
+background-color, kolor pod zawartością i paddingiem elementu,
+color, kolor treści elementu (zazwyczaj tekstu),
+text-shadow: ustawia cień pod tekstem wewnątrz elementu,
+display: określa sposób wyświetlania elementu
+
+// centrowanie obrazka
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+// wyjasnienie
+Element <body> jest blokowy (ang. block), co oznacza, że zajmuje całą dostępną przestrzeń
+na stronie i możesz zastosować dla niego marginesy i inne ustawienia wielkości.
+Z drugiej strony, obrazki są elementali liniowymi (ang.inline) i nie posiadają takich właściwości.
+Dlatego żeby zastosować marginesy dla grafiki musimy zmienić jej sposób wyświetlania
+ na blokowy używając display: block;.
+
+// spodoby wyswietlania:
+
+block
+The element generates a block element box,
+generating line breaks both before and after the element when in the normal flow.
+
+inline
+The element generates one or more inline element boxes that do not generate
+line breaks before or after themselves. In normal flow, the next element will
+be on the same line if there is space

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: my-rabbit
+    volumes:
+      - ./etc/definitions.json:/etc/rabbitmq/definitions.json
+      - ./etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf  # konfiguracja
+      - ./data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit # dane rabbitmq, baza danych
+      - ./logs:/var/log/rabbitmq/log # katalog z logami rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672

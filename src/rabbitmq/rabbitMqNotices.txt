@@ -14,3 +14,44 @@ docker run --rm -it --hostname my-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-
 // management: http://localhost:15672 -> login/pass -> guest/guest
 
 -> from now on , we are able to do tutorials about producers and consumers
+
+Przydatne polecenia:
+
+sudo rabbitmqctl list_queues
+
+// ACK - widomosc przetworzona - ack do amqp wtedy amqp moze taka wiadomosc skasowac
+sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged // wiadomosci bez potwierdzenia otrzymania i przetworzenia
+
+
+
+// Message durability - trwałość wiadomości.
+
+aby dane nie zostały zagubione z kolejek , trzeba oznaczyc kolejkę jak i wiadomość słowem "durable"
+
+(!)
+RabbitMQ doesn't allow you to redefine an existing queue with different parameters
+and will return an error to any program that tries to do that.
+But there is a quick workaround - let's declare a queue with different name, for example "task_queue"
+
+// Fair dispatch - uczwiwa wysyłka
+
+In order to defeat that we can use the basic_qos method with the prefetch_count = 1 setting.
+This tells RabbitMQ not to give more than one message to a worker at a time.
+Or, in other words, don't dispatch a new message to a worker until it has processed and acknowledged the previous one.
+Instead, it will dispatch it to the next worker that is not still busy.
+
+
+[EXCHANGES]
+// sudo rabbitmqctl list_exchanges
+
+// todo:  https://www.rabbitmq.com/tutorials/tutorial-three-php.html
+// Exchanges - miejsce do ktorego producer wysyla wiadomosci , oraz broker wiadomosci ,
+// poniże tryby co robic z wiadomosciami
+- direct
+- topic
+- headers
+- fanout // rozgłosić po wszystkich znanych dla exchange kolejkach
+
+[i]
+In previous parts of the tutorial we knew nothing about exchanges, but still were able to send messages to queues.
+That was possible because we were using a default exchange, which we identify by the empty string

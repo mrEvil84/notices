@@ -12,7 +12,6 @@ class Vehicle
     {
         echo '__sleep ... ' . PHP_EOL;
         return ['type', 'number'];
-//        return ['type'];
     }
 
     public function __wakeup()

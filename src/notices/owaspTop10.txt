@@ -1,0 +1,118 @@
+owasp-top10-2021
+
+AO1-2021:-Broken Access Controll - podatnosci z autoryzacja i rolami w aplikacji
+A02-2021:-Cryptographic Failures - np. zatwardowklepany klucz jwt (json web token)
+A03-2021:-Injection -  SQL injection / XSS / template injection / HTML injection
+A04-2021:-Insecure Design
+A05-2021:-Security Misconfiguration
+A06-2021:-Vulnerable and Outdated Components
+A07-2021:-Identification and Authentication Failures
+A08-2021:-Software and Data Integrity Failures
+A09-2021:-Security Ligging and Monitoring Failures
+A10-2021:-Server-Side Requesr Forgery (SSRF)
+
+
+Ad A01-2021: https://owasp.org/www-community/Broken_Access_Control
+application does not implement proper authorization of access to data; thus, application
+users may access data of other users with read/write privileges.
+
+Przykład ataku:
+1. As user A sign into account, fetch user_id from /users/me endpoint
+2. Register a new account and confirm email address
+3. Fill the required forms
+4. While sending PUT request intercept it and paste value copied from user A to account_id
+param.
+
+Jak sprawdzać czy jest się podatnym:
+ - polityka dostępu powinna być jasno udokumentowana, jeśli jej nie ma jest to podatność
+ - kod implementujący politykę dostępu powinien być sprawdzany
+ - kod powinien być dobrze ustrukturyzowany, modularny i najprawdop. scentralizowany
+ - cr kodu powinno być robione pod kątem poprawności walidacji i implementacji kontroli dostępu
+ - powinno przeprowadzać się testy penetracyjne
+
+Jak się bronić:
+ - w miarę możliwości usunąć dostęp administracyjny przez stronę główną, metody zarządcze realizować przez dostęp po vpn.
+ - podczas projektowania aplikacji myśleć o wymaganiach kontroli dostępu do aplikacji
+ - mocno polecane jest użycie macieży zasad dostępu, zasób - dostęp
+ - definiowanie polityki bezpieczeństwa, jaki user ma dostęp do zasobów i funkcji systemu
+ - aplikacja nie powinna polegac na id przekazywanych w requestach dot. roli usera, zasobu etc.
+ - przed uzyskaniem dost. do wewnetrznych zasobow trzeba zrobic takie zabezp. zeby nie można bylo omijać tych zabezp.
+ - zabezpieczyć przed Path Traversal - czyli mozliwości eksploracji plikow podając scieżki typu ../../file w request
+ - korzystac  z uprawnien oferowanych przez os systemu gdzie lezy aplikacja, dawac bardzo ograniczone prawa do plikow aplikacji.
+ - aplikacja nie powinna pozwalać na cachowanie wrażliwych in formacji na komputerach użytkowników.
+
+- projektowac aplikacje tak aby niemozliwa była modyfikacja zasobów innych użytkowników, np. przez podmiane id nieswojego zasobu
+- przykład rejestracja usera, można zmienić account_id  i dodac nowego usera z uprawnieniami admina.
+- najczęstszymi celami są strony zarządzające aplikacją (backend) bo tam loguje się admin, te strony powinny być szczególnie chronione
+- brak przemyślanej polityki dostępów do zasobów aplikacji -> chaos z regułami dostępowymi.
+
+
+Ad A02:2021 – Cryptographic Failuresicon: https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+the focus is on failures related to cryptography (or lack thereof). Which often lead to exposure of sensitive data.
+hardcoded password, use broke on risky crypto algo.
+
+* Zdefiniowanie danych wrażliwych w aplikacji:
+- hasla
+- numery kart kredytowych
+- dane GDPR
+- dane finansowe etc.
+* Identyfikacja jak przesyłane są dane wrażliwe w systemie, aby nie otwartym tekstem
+* Sprawdzenie czy nie używamy przestażałych albo podatnych algo kryptograficznych w systemie
+* Wprowadzenie polityki odświeżania kluczy kryptograficznych
+* Właczenie https
+* spr. czy cert. strony jest prawidłowo zwalidoway
+* spr. czy zastosowane metody hashujace sa wystarczajaco dobre
+* nie używać MD5 oraz SHA1
+* nie przechowywać wrażliwych danych gdy są one niepotrzebne, należy je usunąć.
+* wyłączyć cachowanie w responsach dla wrażliwych danych
+* Zastosuj wymagane środki bezpieczeństwa zgodnie z klasyfikacją danych.
+* nie używać starych protokołów do przesyłania wrażliwych danych FTP, SMTP
+* Store passwords using strong adaptive and salted hashing functions with a work factor (delay factor), such as Argon2, scrypt, bcrypt or PBKDF2.
+* Always use authenticated encryption instead of just encryption.
+* Klucze powinny być losowo generowane kryptograficznie i przechowywane w pamięci jako tablice bajtów.
+  Jeśli używane jest hasło, należy je przekonwertować na klucz za pomocą odpowiedniej funkcji wyprowadzania klucza bazy hasła.
+
+Ad A03-2021:-Injection: https://owasp.org/Top10/A03_2021-Injection/
+Aplikacja jest podatna na atak gdy :
+* dane wprowadzane do aplikacji nie są : walidowane, oczyszczane , filtrowane
+* zapytania dynamiczne z parametrami są używane bezpośrednio , parametry nie są sprawdzne filtrowane etc.
+* Wrogie dane są używane w parametrach wyszukiwania mapowania obiektowo-relacyjnego (ORM) w celu wyodrębnienia dodatkowych, wrażliwych rekordów.
+* Source code review is the best method of detecting if applications are vulnerable to injections.
+* Automated testing of all parameters, headers, URL, cookies, JSON, SOAP, and XML data inputs is strongly encouraged
+
+Jak się bronić :
+* Preventing injection requires keeping data separate from commands and queries:
+** The preferred option is to use a safe API, which avoids using the interpreter entirely, provides a parameterized interface, or migrates to Object Relational Mapping Tools (ORMs).
+** Use positive server-side input validation. This is not a complete defense as many applications require special characters, such as text areas or APIs for mobile applications.
+** For any residual dynamic queries, escape special characters using the specific escape syntax for that interpreter.
+** Use LIMIT and other SQL controls within queries to prevent mass disclosure of records in case of SQL injection.
+
+
+Ad A04-2021:-Insecure Design: https://owasp.org/Top10/A04_2021-Insecure_Design/
+
+Def. Insecure design is a broad category representing different weaknesses, expressed as “missing or ineffective control design.”
+There is a difference between insecure design and insecure implementation.
+
+Jednym z czynników, które przyczyniają się do niepewnego projektowania,
+jest brak profilowania ryzyka biznesowego nieodłącznie związanego z opracowywanym oprogramowaniem lub systemem,
+a tym samym brak określenia, jaki poziom projektowania zabezpieczeń jest wymagany.
+
+Jak się bronić :
+
+* Ustanów bezpieczny cykl rozwoju i korzystaj z niego wraz ze specjalistami AppSec, aby pomóc ocenić i zaprojektować zabezpieczenia i kontrole związane z prywatnością
+
+* Stwórz i korzystaj z biblioteki bezpiecznych wzorców projektowych lub gotowych do użycia utwardzonych dróg
+
+* Używaj modelowania zagrożeń do krytycznego uwierzytelniania, kontroli dostępu, logiki biznesowej i przepływów kluczy
+
+* Zintegruj język bezpieczeństwa i elementy sterujące z historyjkami użytkownika
+
+* Zintegruj kontrole wiarygodności na każdym poziomie aplikacji (od frontendu do backendu)
+
+* Napisz testy jednostkowe i integracyjne, aby sprawdzić, czy wszystkie krytyczne przepływy są odporne na model zagrożeń. Kompiluj przypadki użycia i przypadki niewłaściwego użycia dla każdej warstwy aplikacji.
+
+* Segreguj warstwy warstw w warstwach systemu i sieci w zależności od narażenia i potrzeb w zakresie ochrony
+
+* Solidnie segreguj najemców zgodnie z projektem na wszystkich poziomach
+
+* Ogranicz zużycie zasobów przez użytkownika lub usługę
