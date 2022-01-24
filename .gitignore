@@ -4,3 +4,5 @@ composer.lock
 .phpunit.result.cache
 /src/rabbitmq/data/
 /src/rabbitmq/logs/
+.phplint-cache
+phpunit.xml.bak
