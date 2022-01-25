@@ -118,14 +118,12 @@ class EventManager // publisher
             && !empty($this->listeners[$eventType->getName()])
         ) {
             $isListenerSet = false;
-            /** @var Listener $listener */
+            /** @var Listener $listenerItem */
             foreach ($this->listeners[$eventType->getName()] as $listenerItem) {
                 $isListenerSet = get_class($listenerItem) === get_class($listener);
             }
             return $isListenerSet;
         }
-
-
         return false;
     }
 }

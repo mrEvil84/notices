@@ -5,7 +5,7 @@ namespace PkowerzMacwro\GitSandbox\patterns\creational\Prototype;
 require_once '../../../../vendor/autoload.php';
 
 // PROTOTYP
-// Do zapamietania:   klonowanie delegowane do obiektow
+// Do zapamietania:   klonowanie, delegowanie do obiektow
 
 // Prototyp to kreacyjny wzorzec projektowy, który umożliwia kopiowanie już istniejących obiektów
 // bez tworzenia zależności pomiędzy twoim kodem, a klasami obiektów.
@@ -29,9 +29,9 @@ require_once '../../../../vendor/autoload.php';
 //use PkowerzMacwro\GitSandbox\patterns\creational\Prototype\ApplePrototype;
 //use PkowerzMacwro\GitSandbox\patterns\creational\Prototype\Cloner;
 
-$apple = new ApplePrototype('lobo', 2.45);
+$applePrototype = new AppleLobo('lobo', 2.45);
 
-$cloner = new Cloner($apple);
+$cloner = new Cloner($applePrototype);
 
 $apples = [];
 $clonesCount = 1000;

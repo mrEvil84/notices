@@ -4,7 +4,7 @@ namespace PkowerzMacwro\GitSandbox\patterns\creational\Prototype;
 
 use JetBrains\PhpStorm\Pure;
 
-class ApplePrototype implements Prototype
+class AppleLobo implements Prototype
 {
     private string $name;
 
@@ -16,7 +16,7 @@ class ApplePrototype implements Prototype
         $this->price = $price;
     }
 
-    #[Pure] public function clone(): Prototype
+    public function clone(): Prototype
     {
         return new self($this->name, $this->price);
     }

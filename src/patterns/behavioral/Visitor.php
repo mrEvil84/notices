@@ -18,7 +18,9 @@ require_once '../../../vendor/autoload.php';
 
 // 1. Zasada otwarte/zamknięte. Pozwala wprowadzać nowe zachowanie odnoszące się do obiektów różnych klas bez konieczności zmiany tych klas.
 // 2. Zasada pojedynczej odpowiedzialności. Można przenieść kilka wersji danego zachowania do jednej klasy.
-// 3. Obiekt odwiedzający może zebrać użyteczne informacje współpracując z różnymi obiektami. Może się to przydać, gdy zaistnieje potrzeba przejrzenia złożonej struktury danych element po elemencie (takiej jak drzewo obiektów) i zastosowania odwiedzającego do każdego obiektu struktury.
+// 3. Obiekt odwiedzający może zebrać użyteczne informacje współpracując z różnymi obiektami. Może się to przydać,
+//    gdy zaistnieje potrzeba przejrzenia złożonej struktury danych element po elemencie (takiej jak drzewo obiektów)
+//    i zastosowania odwiedzającego do każdego obiektu struktury.
 
 // Wady:
 // 1. Trzeba zaktualizować wszystkich odwiedzających za każdym razem gdy hierarchia elementów zyskuje nową klasę lub którąś traci.

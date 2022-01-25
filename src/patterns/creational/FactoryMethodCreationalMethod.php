@@ -70,6 +70,7 @@ abstract class Plant {
 
     protected string $plantCode;
 
+    // this is factory method
     abstract public function createProduct(): Product;
 
     public function getProduct(): Product
