@@ -45,8 +45,8 @@ Instead, it will dispatch it to the next worker that is not still busy.
 // sudo rabbitmqctl list_exchanges
 
 // todo:  https://www.rabbitmq.com/tutorials/tutorial-three-php.html
-// Exchanges - miejsce do ktorego producer wysyla wiadomosci , oraz broker wiadomosci ,
-// poniże tryby co robic z wiadomosciami
+// Exchanges - miejsce do ktorego producer wysyla wiadomosci - broker wiadomosci
+// poniże tryby co robic z wiadomosciami, działanie brokera
 - direct
 - topic
 - headers
@@ -55,3 +55,42 @@ Instead, it will dispatch it to the next worker that is not still busy.
 [i]
 In previous parts of the tutorial we knew nothing about exchanges, but still were able to send messages to queues.
 That was possible because we were using a default exchange, which we identify by the empty string
+
+[i] listing exchanges
+    sudo rabbitmqctl list_exchanges
+
+[i] queues binding list
+    rabbitmqctl list_bindings
+
+[DIRECT]
+
+wiadomosci sa kiedowane przez brokera (exchange) do odpowiedniej kolejki na podstawie routing_key
+
+[TOPIC]
+zasada tworzenia routing keys:   nazwa.nazwa.nazwa. itd.
+* (star) can substitute for exactly one word.
+# (hash) can substitute for zero or more words.
+eg. kernel.error
+
+wiadomosci sa kierowane przez brokera na podstawie routing_key, routing_key może być wieloznaczny np:
+
+
+"#" -> wiadomosci oznaczone # kierowane sa na wszystkie kolejki
+
+kernel.* -> wszystkie wiadomosci z kernel
+*.warings -> słuchanie wszystkich warningów.
+
+To receive all the logs:
+php receive_logs_topic.php "#"
+To receive all logs from the facility "kern":
+
+php receive_logs_topic.php "kern.*"
+Or if you want to hear only about "critical" logs:
+
+php receive_logs_topic.php "*.critical"
+You can create multiple bindings:
+
+php receive_logs_topic.php "kern.*" "*.critical"
+And to emit a log with a routing key "kern.critical" type:
+
+php emit_log_topic.php "kern.critical" "A critical kernel error"
