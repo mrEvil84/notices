@@ -11,7 +11,7 @@ $channel = $connection->channel();
 
 // rownomierne rodzielanie zadan pomiedzy workery
 
-$channel->basic_qos(null, 1, null);
+$channel->basic_qos(0, 1, false);
 
 $channel->queue_declare(Settings::QUEUE_NAME, false, true, false, false);
 

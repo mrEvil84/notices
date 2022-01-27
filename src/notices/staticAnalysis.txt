@@ -1,0 +1,3 @@
+psalm
+
+./vendor/bin/psalm ./src --output-format=github

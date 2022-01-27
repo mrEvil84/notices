@@ -5,7 +5,7 @@
 
 // Kiedy stosowac
 
-// 1. Stosuj wzorzec Stan gdy masz do czynienia z obiektem którego zachowanie jest zależne od jego stanu,
+// 1. Stosuj wzorzec Stan gdy masz do czynienia z obiektem, którego zachowanie jest zależne od jego stanu,
 // liczba możliwych stanów jest wielka, a kod specyficzny dla danego stanu często ulega zmianom.
 
 // 2. Stosuj ten wzorzec gdy masz klasę zaśmieconą rozbudowanymi instrukcjami warunkowymi zmieniającymi
@@ -26,11 +26,11 @@
 
 abstract class State
 {
-    protected Document $document;
+    protected string $documentState;
 
-    public function setDocument(Document $document): void
+    public function setDocumentState(string $documentState): void
     {
-        $this->document = clone $document;
+        $this->documentState = $documentState;
     }
 
     abstract public function render(): void;
@@ -57,7 +57,7 @@ class ReadyToPublish extends State
     public function render(): void
     {
         echo '[Info] : Document is ready to publish' . PHP_EOL;
-        echo '[Info] : data to be rendered: ' . $this->document->render() . PHP_EOL;
+        echo '[Info] : data to be rendered: ' . $this->documentState . PHP_EOL;
     }
 
     public function publish(): void
@@ -69,9 +69,11 @@ class ReadyToPublish extends State
 class Document
 {
     private string $data = '';
+    private State $state;
 
     public function __construct(State $state)
     {
+        $state->setDocumentState($this->data);
         $this->setState($state);
     }
 
@@ -83,6 +85,7 @@ class Document
     public function setState(State $state)
     {
         unset($this->state);
+        $state->setDocumentState($this->data);
         $this->state = $state;
     }
 

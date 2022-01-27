@@ -6,6 +6,7 @@ class parentClass {
 
     }
 }
+
 class childClass extends parentClass {
     public function someMethod(): void
     {

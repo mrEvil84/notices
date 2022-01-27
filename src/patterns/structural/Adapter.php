@@ -1,4 +1,5 @@
 <?php
+
 // MT: uzywanie starych klas które, mają niekompatybilny interfejs z naszą aplikacją
 
 
@@ -20,8 +21,8 @@ class LegacyServiceTreeDrawer
 {
     public function drawTree(int $levels, string $char): void
     {
-        for($i = 0; $i < $levels; $i++) {
-            for($j = 0; $j < $i; $j++) {
+        for ($i = 0; $i < $levels; $i++) {
+            for ($j = 0; $j < $i; $j++) {
                 echo '*';
             }
             echo PHP_EOL;
@@ -44,7 +45,7 @@ interface ClientDrawer
     public function draw(Tree $tree): void; // inna lista argumentow niz w klasie LegacyServiceTreeDrawer
 }
 
-class Adapter implements ClientDrawer // adapter musi umiedc w interfejs oraz wiedziec jak wywolac metode klasy legacy
+class Adapter implements ClientDrawer // adapter musi umiedc w interfejs aktualny oraz wiedziec jak wywolac metode klasy legacy
 {
     private LegacyServiceTreeDrawer $adaptee;
 
@@ -55,7 +56,7 @@ class Adapter implements ClientDrawer // adapter musi umiedc w interfejs oraz wi
 
     public function draw(Tree $tree): void
     {
-       $this->adaptee->drawTree($tree->high, $tree->leafsSign);
+        $this->adaptee->drawTree($tree->high, $tree->leafsSign);
     }
 }
 

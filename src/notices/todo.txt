@@ -1,5 +1,9 @@
 1. owasp top 10
 2. html css java script basics
-3. amqp
+3. amqp - ok
 4. supervisior
 5. gitlab
+6. redis
+7. php errors
+8. doctrine
+9. mongo-db

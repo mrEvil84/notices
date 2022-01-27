@@ -209,7 +209,7 @@ class CarDirector
         $this->manualBuilder = $manualBuilder;
     }
 
-    private function makeSuvCar(): Product
+    private function makeSuvCar(): ?Product
     {
         $this->carBuilder->reset();
         $this->carBuilder->setEngine('4.1 HP');

@@ -33,7 +33,7 @@ use Spatie\ArrayToXml\ArrayToXml;
 interface Element
 {
     public function getData(): array;
-    public function accept(Visitor $visitor);
+    public function accept(Visitor $visitor): void;
 }
 
 // drogocenne obiekty gdzie dodalismy tylko metode odpalajaca wizytora
@@ -59,7 +59,7 @@ class Invoice implements Element
         return $this->value;
     }
 
-    public function accept(Visitor $visitor)
+    public function accept(Visitor $visitor): void
     {
         $visitor->visitInvoice($this);
     }
@@ -71,7 +71,6 @@ class Invoice implements Element
             'value' => $this->value,
         ];
     }
-
 }
 
 class PersonalInvoice implements Element
@@ -111,30 +110,38 @@ class PersonalInvoice implements Element
         ];
     }
 
-    public function accept(Visitor $visitor)
+    public function accept(Visitor $visitor): void
     {
         $visitor->visitPersonalInvoice($this);
     }
-
-
 }
 
 interface Visitor
 {
-    public function visitInvoice(Invoice $element);
-    public function visitPersonalInvoice(PersonalInvoice $element);
+    public function visitInvoice(Invoice $element): void;
+    public function visitPersonalInvoice(PersonalInvoice $element): void;
+    public function getXmlInvoice(): ?string;
 }
 
 class XMLExportVisitor implements Visitor
 {
-    public function visitInvoice(Invoice $element): string
+    private ?string $currentXmlInvoice = null;
+
+    public function visitInvoice(Invoice $element): void
     {
-        return ArrayToXml::convert($element->getData());
+        unset($this->currentXmlInvoice);
+        $this->currentXmlInvoice = ArrayToXml::convert($element->getData());
     }
 
-    public function visitPersonalInvoice(PersonalInvoice $element): string
+    public function visitPersonalInvoice(PersonalInvoice $element): void
     {
-        return ArrayToXml::convert($element->getData());
+        unset($this->currentXmlInvoice);
+        $this->currentXmlInvoice =  ArrayToXml::convert($element->getData());
+    }
+
+    public function getXmlInvoice(): ?string
+    {
+        return $this->currentXmlInvoice;
     }
 }
 
@@ -144,9 +151,11 @@ $personalInvoice = new PersonalInvoice('Piotr', 'Kowerzanow', $invoice);
 
 $visitor = new XMLExportVisitor();
 
-$xmlInvoice = $visitor->visitInvoice($invoice);
-$xmlPersonalInvoice = $visitor->visitPersonalInvoice($personalInvoice);
+$invoice->accept($visitor);
+$invoiceXml = $visitor->getXmlInvoice();
 
-var_dump($xmlInvoice);
-var_dump($xmlPersonalInvoice);
+$personalInvoice->accept($visitor);
+$personalInvoiceXml = $visitor->getXmlInvoice();
 
+var_dump($invoiceXml);
+var_dump($personalInvoiceXml);
