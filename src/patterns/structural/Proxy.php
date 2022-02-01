@@ -76,7 +76,6 @@ class DbServiceProxy implements DbWriter
         $this->mySqlDbService->update($data);
         echo 'Notify others about data update.' . PHP_EOL;
     }
-
 }
 
 class DbClient

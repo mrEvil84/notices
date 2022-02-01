@@ -1,6 +1,5 @@
 <?php
 
-
 // MT: do zachowywania stanu obiektow i tworzenia z niej historii stanow obiektu
 // MT: dwa interfejsy Oiriginator i Memento , originator zwraca memento , originator-save:memento , memento-restore:originator/object
 
@@ -21,7 +20,7 @@
 
 interface Memento
 {
-    public function restore(): object;
+    public function restore(): Originator;
 }
 
 interface Originator
@@ -66,7 +65,7 @@ class Apple implements Originator
     }
 }
 
-class AppleMemento implements Memento
+final class AppleMemento implements Memento
 {
     private Apple $originator;
     private array $state;
@@ -81,7 +80,14 @@ class AppleMemento implements Memento
 
     public function restore(): Apple
     {
-        echo 'Restore Apple : State: name: ' . $this->state['name'] . ' price: ' . $this->state['price'] . 'creation date: ' . $this->creationDate . PHP_EOL;
+        echo sprintf(
+            "Restore Apple : State: name: %s price: %s creation date: %s %s",
+            $this->state['name'],
+            $this->state['price'],
+            $this->creationDate,
+            PHP_EOL
+        );
+
         $this->originator->setPrice($this->state['price']);
         $this->originator->setName($this->state['name']);
         return $this->originator;
@@ -93,9 +99,10 @@ class Caretaker
     /**
      * @var Memento[]
      */
-    private array $history;
+    private array $history = [];
 
-    public function add(Memento $memento) {
+    public function add(Memento $memento): void
+    {
         $this->history [] = $memento;
     }
 
@@ -104,7 +111,7 @@ class Caretaker
         /** @var AppleMemento $appleMemento */
         $appleMemento = array_pop($this->history);
 
-       return $appleMemento->restore();
+        return $appleMemento->restore();
     }
 }
 

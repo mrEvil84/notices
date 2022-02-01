@@ -17,7 +17,7 @@
 // Zalety:
 //
 // 1. Zachwoje zasade OCP (Open Closed Principle) można wprowadzac nowe funkcjonalnosci np. nowe klasy listenerow nie
-//  zmieniajac innych
+//    zmieniajac innych
 // 2. Można utworzyć związek pomiędzy obiektami w trakcie działania programu.
 //
 // Wady:

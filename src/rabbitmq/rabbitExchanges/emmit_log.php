@@ -12,7 +12,7 @@ $channel = $connection->channel();
 
 $channel->exchange_declare(
     Settings::EXCHANGE_NAME,
-    Settings::EXCHANGE_BROADCAST_TYPE,
+    Settings::EXCHANGE_BROADCAST_TYPE, // fanout do kazdej kolejki do ktorej kieruje exchange
     false,
     true,
     false

@@ -1,7 +1,7 @@
 owasp top10-2021
 
 AO1-2021:-Broken Access Controll - podatnosci z autoryzacja i rolami w aplikacji
-A02-2021:-Cryptographic Failures - np. zatwardowklepany klucz jwt (json web token)
+A02-2021:-Cryptographic Failures - np. 'zatwardowklepany' klucz jwt (json web token)
 A03-2021:-Injection -  SQL injection / XSS / template injection / HTML injection
 A04-2021:-Insecure Design
 A05-2021:-Security Misconfiguration
@@ -9,7 +9,7 @@ A06-2021:-Vulnerable and Outdated Components
 A07-2021:-Identification and Authentication Failures
 A08-2021:-Software and Data Integrity Failures
 A09-2021:-Security Ligging and Monitoring Failures
-A10-2021:-Server-Side Requesr Forgery (SSRF)
+A10-2021:-Server-Side Request Forgery (SSRF)
 
 
 Ad A01-2021: https://owasp.org/www-community/Broken_Access_Control
@@ -39,7 +39,7 @@ Jak się bronić:
  - przed uzyskaniem dost. do wewnetrznych zasobow trzeba zrobic takie zabezp. zeby nie można bylo omijać tych zabezp.
  - zabezpieczyć przed Path Traversal - czyli mozliwości eksploracji plikow podając scieżki typu ../../file w request
  - korzystac  z uprawnien oferowanych przez os systemu gdzie lezy aplikacja, dawac bardzo ograniczone prawa do plikow aplikacji.
- - aplikacja nie powinna pozwalać na cachowanie wrażliwych in formacji na komputerach użytkowników.
+ - aplikacja nie powinna pozwalać na cachowanie wrażliwych informacji na komputerach użytkowników.
 
 - projektowac aplikacje tak aby niemozliwa była modyfikacja zasobów innych użytkowników, np. przez podmiane id nieswojego zasobu
 - przykład rejestracja usera, można zmienić account_id  i dodac nowego usera z uprawnieniami admina.

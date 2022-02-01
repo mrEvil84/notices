@@ -55,7 +55,6 @@ class SaveService
 
 class SaveCommand implements Command
 {
-    private string $params;
     private SaveService $saveService;
 
     public function __construct(SaveService $saveService)
@@ -68,8 +67,6 @@ class SaveCommand implements Command
         echo '[Save command] : ' . PHP_EOL;
         $this->saveService->save($params);
     }
-
-
 }
 
 class OpenFileCommand implements Command

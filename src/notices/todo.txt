@@ -1,9 +1,10 @@
-1. owasp top 10
-2. html css java script basics
+1. owasp top 10 - ok
+2. html css java script basics - ok
 3. amqp - ok
 4. supervisior
 5. gitlab
-6. redis
-7. php errors
+6. redis - ok
+7. php errors - ok
 8. doctrine
 9. mongo-db
+10. SPL - standard php library

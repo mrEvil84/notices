@@ -1,4 +1,5 @@
 <?php
+
 // MindTrigger: Struktury drzewiaste, pudełka z produktami w mniejszych pudełkach.
 
 // Kompozyt to strukturalny wzorzec projektowy pozwalający komponować obiekty w struktury drzewiaste,
@@ -32,7 +33,7 @@ class Apple implements Product
     }
     public function getName(): string
     {
-       return 'apple';
+        return 'apple';
     }
 }
 
@@ -47,7 +48,6 @@ class Car implements Product
     {
         return 'awesome car';
     }
-
 }
 
 
@@ -58,7 +58,8 @@ class PackageComposite implements Product // klasa kompozyt , posiada w sobie in
      */
     private array $products;
 
-    public function add(Product $p) {
+    public function add(Product $p)
+    {
         $this->products [] = $p;
     }
 

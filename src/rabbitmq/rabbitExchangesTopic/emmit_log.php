@@ -59,7 +59,7 @@ for ($i = 0; $i < 10000; $i++) {
     $channel->basic_publish(
         $msg,
         Settings::EXCHANGE_NAME,
-        $routingKey
+        $routingKey // nazwa kolejki np. sys.error, sys.warning, sys.info etc.
     );
     echo " [$i] Sent: $routingKey,  '$textMsg!'" . PHP_EOL;
 }

@@ -14,8 +14,9 @@
 // Kiedy stosować:
 
 // 1.  Stosuj wzorzec Iterator gdy kolekcja z którą masz do czynienia posiada skomplikowaną strukturę,
-// ale zależy ci na ukryciu jej przed klientem (dla wygody, lub dla bezpieczeństwa).
-// 2.  Stosuj Iterator gdy chcesz, aby twój kod był w stanie przeglądać elementy różnych struktur danych, lub gdy nie znasz z góry szczegółów ich struktury.
+//     ale zależy ci na ukryciu jej przed klientem (dla wygody, lub dla bezpieczeństwa).
+// 2.  Stosuj Iterator gdy chcesz, aby twój kod był w stanie przeglądać elementy różnych struktur danych,
+//      lub gdy nie znasz z góry szczegółów ich struktury.
 
 // Zalety
 // 1. SRP Zasada pojedynczej odpowiedzialności. Można uprzątnąć kod klienta i kolekcje, ekstrahując obszerny kod przeglądania do osobnych klas.
@@ -26,6 +27,8 @@
 // Wady:
 // 1. Zastosowanie tego wzorca będzie przesadą jeśli twoja aplikacja korzysta wyłącznie z prostych kolekcji.
 // 2. Używanie iteratora może być mniej efektywne niż bezpośrednie przejście po elementach jakiejś wyspecjalizowanej kolekcji.
+
+// revind , next valid
 
 class Pikej
 {
@@ -64,24 +67,28 @@ class PikejConcreteIterator implements \Iterator
         return $this->collection->getCollection()[$this->position];
     }
 
-    public function next(): void // Moves the current position to the next element. (!) This method is called after each foreach loop.
+    // This is the first method called when starting a foreach loop. It will not be executed after foreach loops.
+    public function rewind(): void
+    {
+        $this->position = 0;
+    }
+
+    // Moves the current position to the next element. (!)
+    // This method is called after each foreach loop.
+    public function next(): void
     {
         ++$this->position;
+    }
+
+    // This method is called after Iterator::rewind() and Iterator::next() to check if the current position is valid.
+    public function valid(): bool
+    {
+        return isset($this->collection->getCollection()[$this->position]);
     }
 
     public function key(): int
     {
         return $this->position;
-    }
-
-    public function valid(): bool // This method is called after Iterator::rewind() and Iterator::next() to check if the current position is valid.
-    {
-        return isset($this->collection->getCollection()[$this->position]);
-    }
-
-    public function rewind(): void // This is the first method called when starting a foreach loop. It will not be executed after foreach loops.
-    {
-        $this->position = 0;
     }
 }
 

@@ -47,8 +47,8 @@ Instead, it will dispatch it to the next worker that is not still busy.
 // todo:  https://www.rabbitmq.com/tutorials/tutorial-three-php.html
 // Exchanges - miejsce do ktorego producer wysyla wiadomosci - broker wiadomosci
 // poniże tryby co robic z wiadomosciami, działanie brokera
-- direct
-- topic
+- direct // do brokera i bezposrednio do kolejki
+- topic // do brokera i do kolejki na routing key
 - headers
 - fanout // rozgłosić po wszystkich znanych dla exchange kolejkach
 

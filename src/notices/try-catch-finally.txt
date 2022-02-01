@@ -1,0 +1,15 @@
+
+A finally block may also be specified after or instead of catch blocks.
+ Code within the finally block will always be executed after the try and catch blocks,
+  regardless of whether an exception has been thrown, and before normal execution resumes.
+
+One notable interaction is between the finally block and a return statement.
+If a return statement is encountered inside either the try or the catch blocks,
+the finally block will still be executed. Moreover, the return statement is evaluated when encountered,
+but the result will be returned after the finally block is executed.
+Additionally, if the finally block also contains a return statement, the value from the finally block is returned.
+
+When an exception is thrown,
+code following the statement will not be executed, and PHP will attempt to find the first matching catch block.
+If an exception is not caught, a PHP Fatal Error will be issued with an "Uncaught Exception ..." message,
+unless a handler has been defined with set_exception_handler().

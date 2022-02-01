@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// MT: Pilot i sterowanie telewizorem,  interfejs z funkcjami to pilot a klasa to logika realizujaca sterowanie z pilota. -> tv
+// MT: Pilot i sterowanie telewizorem, interfejs z funkcjami i klasa urządzenia to urządzenie a klasa Remote to pilot
 
 // Most jest strukturalnym wzorcem projektowym pozwalającym na rozdzielenie dużej klasy
 // lub zestawu spokrewnionych klas na dwie hierarchie — abstrakcję oraz implementację.
@@ -54,7 +54,7 @@ interface Device
     public function disable(): void;
     public function getVolume(): int;
     public function setVolume(int $percent): void;
-    public function getChannel():int;
+    public function getChannel(): int;
     public function setChannel(int $number): void;
 }
 
@@ -113,8 +113,6 @@ class Tv implements Device
 class Remote
 {
     private Device $device;
-    private int $volume = 0;
-    private int $channel = 0;
 
     public function __construct(Device $device)
     {
@@ -144,7 +142,7 @@ class Remote
 
     private function setVolume(int $volume): void
     {
-        if ($volume >=0 && $volume <= 100) {
+        if ($volume >= 0 && $volume <= 100) {
             $this->device->setVolume($volume);
         }
     }

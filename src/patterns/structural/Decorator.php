@@ -114,7 +114,6 @@ class ClientNotifier
             }
         }
     }
-
 }
 
 $fb = new FacebookNotifierDecorator(new FacebookNotifier());

@@ -41,9 +41,9 @@ require_once '../../vendor/autoload.php';
 // \w	Matches any word character (definned as a to z, A to Z,0 to 9, and the underscore). Same as [a-zA-Z_0-9]
 // \W	Matches any non-word character. Same as [^a-zA-Z_0-9]
 
-//$wordText = 'dskjlsdfkfjd897987cvxvxshskl';
-//$nonWordCharacterPattern = '/\w/';
-//var_dump(preg_match($nonWordCharacterPattern, $wordText));
+$wordText = 'dskjlsdfkfjd897987cvxvxshskl';
+$nonWordCharacterPattern = '/\d/';
+var_dump(preg_match($nonWordCharacterPattern, $wordText), true);
 
 //echo PHP_EOL;
 
@@ -141,7 +141,7 @@ require_once '../../vendor/autoload.php';
 
 //A word boundary character ( \b) helps you search for the words that begins and/or ends with a pattern.
 
-$pattern = '/\bcar\w*/';
-$replacement = '<b>$0</b>';
-$text = 'Words begining with car: cart, carrot, cartoon. Words ending with car: scar, oscar, supercar.';
-echo preg_replace($pattern, $replacement, $text);
+//$pattern = '/\bcar\w*/';
+//$replacement = '<b>$0</b>';
+//$text = 'Words begining with car: cart, carrot, cartoon. Words ending with car: scar, oscar, supercar.';
+//echo preg_replace($pattern, $replacement, $text);

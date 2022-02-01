@@ -42,7 +42,7 @@ for ($i = 0; $i < 10000; $i++) {
     $channel->basic_publish(
         $msg,
         Settings::EXCHANGE_NAME,
-        $severity
+        $severity // routing key , oznacza konkretna kolejkę do ktorej broker wysle wiadomosc
     );
     echo " [$i] Sent:  '$textMsg!'" . PHP_EOL;
 }
