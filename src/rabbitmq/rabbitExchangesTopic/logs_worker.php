@@ -6,7 +6,10 @@
 require_once '../../../vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 use PkowerzMacwro\GitSandbox\rabbitmq\rabbitExchangesTopic\Settings;
+
+
 
 $severities = array_slice($argv, 1);
 if (empty($severities)) {
@@ -15,43 +18,75 @@ if (empty($severities)) {
 }
 
 
-$connection = new AMQPStreamConnection('localhost', 5672, 'msgConsumer', 'secret');
-$channel = $connection->channel();
+class AmqpTestWorker
+{
+    public $consumedMessages = [];
+
+    public function consume($severities): void
+    {
+        $connection = new AMQPStreamConnection('localhost', 5672, 'msgConsumer', 'secret');
+        $channel = $connection->channel();
 
 
-$channel->exchange_declare(
-    Settings::EXCHANGE_NAME,
-    Settings::EXCHANGE_BROADCAST_TYPE,
-    false,
-    true,
-    false
-);
+        $channel->exchange_declare(
+            Settings::EXCHANGE_NAME,
+            Settings::EXCHANGE_BROADCAST_TYPE,
+            false,
+            true,
+            false
+        );
 
-list($queue_name, ,) = $channel->queue_declare("", false, true, true, false); // utworzenie losowej nazwy kolejki zeby podlaczyc sie do brokera
+        list($queue_name, ,) = $channel->queue_declare("", false, true, true, false); // utworzenie losowej nazwy kolejki zeby podlaczyc sie do brokera
 
-foreach ($severities as $severity) {
-        $channel->queue_bind($queue_name, Settings::EXCHANGE_NAME, $severity);
-}
+        foreach ($severities as $severity) {
+            $channel->queue_bind($queue_name, Settings::EXCHANGE_NAME, $severity);
+        }
 
 
-echo " [*] Waiting for messages. To exit press CTRL+C" . PHP_EOL;
 
-$callback = function ($msg) {
-    echo ' [x] ', $msg->delivery_info['routing_key'], ':', $msg->body, "\n";
-    $msg->ack();  // give ack to aqmp
-};
+//        $process = function (AMQPMessage $msg) {
+//
+//            //echo ' [x] ', $msg->getRoutingKey(), ':', $msg->body, "\n";
+//            $msg->ack();  // give ack to aqmp
+//            $this->consumedMessages [] = $msg->body;
+//        };
 
 // set no_ack to false , should wait for ack
-$channel->basic_consume($queue_name, '', false, false, false, false, $callback);
+        $channel->basic_consume($queue_name, '', false, false, false, false, [$this, 'process']);
+
+
+        while (count($channel->callbacks)) {
+            echo " [*] Message processed." . PHP_EOL;
+            $channel->wait();
+        }
 
 
 
+        $channel->close();
+        $connection->close();
+    }
 
-while ($channel->is_open()) {
-    //sleep(1);
-    $channel->wait();
+    public function process(AMQPMessage $msg)
+    {
+        $this->consumedMessages [] = $msg->getBody();
+
+        $file = fopen('log.txt', 'a');
+        fwrite($file, $msg->getBody() . PHP_EOL);
+        fclose($file);
+
+        $msg->ack();  // give ack to aqmp
+    }
 }
 
 
-$channel->close();
-$connection->close();
+$test = new AmqpTestWorker();
+$test->consume($severities);
+
+var_dump($test->consumedMessages);
+
+
+
+
+
+
+

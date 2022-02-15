@@ -5,12 +5,11 @@
 // Otrzymawszy żądanie, każdy z obiektów obsługujących decyduje o przetworzeniu żądania lub przekazaniu
 // go do kolejnego obiektu obsługującego w łańcuchu.
 
-
-// dane na ktorych operuje wzorzec
+// dane na ktorych operuje wzorzec:
 // uwaga na dane przekazywane przez obiekt, trzeba wpuszczac nowy obiekt jak chce się wykonać łańcuch zależności na danych
 //
 // Kiedy stosować :
-//     1.  Stosuj wzorzec Łańcuch zobowiązań gdy twój program ma obsługiwać różne rodzaje żądań na różne sposoby,
+//     1.  Stosuj wzorzec Łańcuch zobowiązań gdy, twój program ma obsługiwać różne rodzaje żądań na różne sposoby,
 //         ale dokładne typy żądań i ich sekwencji nie są wcześniej znane
 //     2.  Stosuj ten wzorzec gdy, istotne jest uruchomienie wielu obiektów obsługujących w pewnej kolejności.
 //     3.  Łańcuch zobowiązań pozwala ustawić obiekty obsługujące i ich kolejność w czasie działania programu.

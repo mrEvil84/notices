@@ -3,10 +3,14 @@
 
 // Zastosowanie:
 //
-// 1. Stosuj wzorzec Strategia gdy chcesz używać różnych wariantów jednego algorytmu w obrębie obiektu i zyskać możliwość zmiany wyboru wariantu w trakcie działania programu.
-// 2. Warto stosować ten wzorzec gdy masz w programie wiele podobnych klas, różniących się jedynie sposobem wykonywania jakichś zadań.
-// 3. Strategia pozwala odizolować logikę biznesową klasy od szczegółów implementacyjnych algorytmów, które nie są istotne w kontekście tej logiki.
-// 4. Stosuj ten wzorzec gdy twoja klasa zawiera duży operator warunkowy, którego zadaniem jest wybór odpowiedniego wariantu tego samego algorytmu.
+// 1. Stosuj wzorzec Strategia gdy chcesz używać różnych wariantów jednego algorytmu w obrębie obiektu i
+// zyskać możliwość zmiany wyboru wariantu w trakcie działania programu.
+// 2. Warto stosować ten wzorzec gdy, masz w programie wiele podobnych klas,
+// różniących się jedynie sposobem wykonywania jakichś zadań.
+// 3. Strategia pozwala odizolować logikę biznesową klasy od szczegółów implementacyjnych algorytmów,
+// które nie są istotne w kontekście tej logiki.
+// 4. Stosuj ten wzorzec gd,y twoja klasa zawiera duży operator warunkowy,
+// którego zadaniem jest wybór odpowiedniego wariantu tego samego algorytmu.
 
 interface RouteStrategy
 {

@@ -16,7 +16,7 @@ class DbMediator implements Mediator
         $this->logger->setMediator($this);
     }
 
-    public function notify(object $sender, EventType $event): void
+    public function notify(EventType $event): void
     {
         if ($event instanceof InsertToDbEvent) {
             $this->logger->notifyInsert($event);

@@ -4,5 +4,5 @@ namespace PkowerzMacwro\GitSandbox\patterns\behavioral\Mediator;
 
 interface Mediator
 {
-    public function notify(object $sender, EventType $event);
+    public function notify(EventType $event): void;
 }

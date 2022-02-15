@@ -9,13 +9,13 @@ class ChangeDataDbComponent extends Component
     public function insertToDb(string $message): void
     {
         echo 'ChangeDataDbComponent: write to db: ' . $message . PHP_EOL;
-        $this->mediator->notify($this, new InsertToDbEvent());
+        $this->mediator->notify(new InsertToDbEvent());
     }
 
     public function updateToDb(string $message): void
     {
         echo 'ChangeDataDbComponent: update to db: ' . $message . PHP_EOL;
-        $this->mediator->notify($this, new UpdateToDbEvent());
+        $this->mediator->notify(new UpdateToDbEvent());
     }
 
     public function setState(string $state): void

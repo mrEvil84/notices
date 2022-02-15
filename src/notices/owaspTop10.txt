@@ -8,7 +8,7 @@ A05-2021:-Security Misconfiguration
 A06-2021:-Vulnerable and Outdated Components
 A07-2021:-Identification and Authentication Failures
 A08-2021:-Software and Data Integrity Failures
-A09-2021:-Security Ligging and Monitoring Failures
+A09-2021:-Security Logging and Monitoring Failures
 A10-2021:-Server-Side Request Forgery (SSRF)
 
 
@@ -73,9 +73,10 @@ hardcoded password, use broke on risky crypto algo.
   Jeśli używane jest hasło, należy je przekonwertować na klucz za pomocą odpowiedniej funkcji wyprowadzania klucza bazy hasła.
 
 Ad A03-2021:-Injection: https://owasp.org/Top10/A03_2021-Injection/
-Aplikacja jest podatna na atak gdy :
+
+Aplikacja jest podatna na atak gdy:
 * dane wprowadzane do aplikacji nie są : walidowane, oczyszczane , filtrowane
-* zapytania dynamiczne z parametrami są używane bezpośrednio , parametry nie są sprawdzne filtrowane etc.
+* zapytania dynamiczne z parametrami są używane bezpośrednio, parametry nie są sprawdzne filtrowane etc.
 * Wrogie dane są używane w parametrach wyszukiwania mapowania obiektowo-relacyjnego (ORM) w celu wyodrębnienia dodatkowych, wrażliwych rekordów.
 * Source code review is the best method of detecting if applications are vulnerable to injections.
 * Automated testing of all parameters, headers, URL, cookies, JSON, SOAP, and XML data inputs is strongly encouraged
@@ -144,7 +145,6 @@ Jak zapobiegać:
 * zautomatyzowany proces do weryfikacji efektywności configuracji oraz ustawień na wszystkich środowiskach
 
 
-
 Ad A06:2021 – Vulnerable and Outdated Components: https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/
 
 Every organization must ensure an ongoing plan for monitoring, triaging, and applying updates or configuration changes for the lifetime of the application or portfolio.
@@ -153,15 +153,15 @@ Jesteś podatny gdy:
 * nie wiesz jakich wersji uzywach po stronie serwerowej i w aplikacji
 * uzywane oprogramowanie ktorego uzywasz jest w starej wersji lub niewspierane
 * jesli nie śledzisz biuletynów o podatnosciach swojego opogramowania
-* jesli nie aktualizujesz swojego oprogramowania , frameworkiserwery etc.
-* jesli software dev nie testuja kompatybilnosci z aktualizacjami bibliotek ktore stosują
+* jesli nie aktualizujesz swojego oprogramowania, frameworki serwery etc.
+* jesli software dev nie testuja kompatybilnosci z aktualizacjami bibliotek które stosują
 * jesli nie dbasz o zabezpieczenie konfiguracji
 
-Jak zapobiegac :
-* usun nieużywane zależnosci z kodu , stare nieużywane kompondnty, pliki, dokumentacje etc.
-* prowadz ciagla inwentaryzacje versji swojego oporogramowania , uzywanego i wytwarzanego
-* uzysuj komponenty wspierajace tylko z oficjalnych zrodel , najlepiej jeszcze jak sa podpisane certami.
-* monitoruj komponenty pod katem aktualizacji, patch-y i poprawek
+Jak zapobiegac:
+* usun nieużywane zależnosci z kodu, stare nieużywane kompondnty, pliki, dokumentacje etc.
+* prowadz ciagla inwentaryzacje versji swojego oporogramowania, uzywanego i wytwarzanego
+* uzysuj komponenty wspierajace tylko z oficjalnych zrodel, najlepiej jeszcze jak sa podpisane certami.
+* monitoruj komponenty pod kątem aktualizacji, patch-y i poprawek
 
 
 
@@ -189,7 +189,9 @@ Jak zapobiegać:
 nieudane próby logowania monitoruj jesli przekroczhy limit logowan powiadamianie admina etc.
 * uzywanie sesji po stronie serwera, identyfikator sesji nie moze byc widoczny w url-ach
 
-
+// weryfikacje w Laravel-u
+Todo: https://www.slideshare.net/Laravel_Poznan_Meetup/laravelowe-paczki-do-uwierzytelniania
+Todo: https://symfony.com/bundles/SchebTwoFactorBundle/current/index.html
 
 
 Ad A08:2021 – Software and Data Integrity Failures : https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures/
@@ -203,7 +205,7 @@ Jak zapobiegać :
 * zapewnienie że biblioteki / zależności są pobierane z zaufanych repo
 * zapewnienie że używane biblioteki / komponenty nie mają znanych podatności
 * zapewnienie review i review konfiguracji kodu
-* CI/CD pipeline ma miec wlasciwą segregację, configurację i kontrolę dostępu aby przeprowadzac bezpieczny proces budowy
+* CI/CD pipeline ma miec wlasciwą segregację, configurację i kontrolę dostępu aby, przeprowadzac bezpieczny proces budowy
  np. stosowac innego niz admin usera do wykonywania buildow
 * nie wysyłan niezabezpieczonych / niezaszyfrowanych danch podczas buildu
 
@@ -218,7 +220,7 @@ Insufficient logging, detection, monitoring, and active response occurs any time
 
 Niewystarczające logowanie, albo jego brak, nie wiadomo co się dzieje w aplikacji. Jakie spadają błędy.
 Aplikacja jest podatna gdy nie ma logowania :
-* logowań userów, nieudanych logowań , transakcji wysokowartościowych - dziwnych
+* logowań userów, nieudanych logowań, transakcji wysokowartościowych - dziwnych
 * błędów i warningów
 * logi są przechowywane lokalnie (!)
 * pentesty nie wszczynają alarmów w monitoringu

@@ -136,7 +136,7 @@ class XMLExportVisitor implements Visitor
     public function visitPersonalInvoice(PersonalInvoice $element): void
     {
         unset($this->currentXmlInvoice);
-        $this->currentXmlInvoice =  ArrayToXml::convert($element->getData());
+        $this->currentXmlInvoice = ArrayToXml::convert($element->getData());
     }
 
     public function getXmlInvoice(): ?string

@@ -11,8 +11,9 @@ declare(strict_types=1);
 
 // Kiedy stosowac ?
 //
-// 1. Stosuj wzorzec Most gdy chcesz rozdzielić i przeorganizować monolityczną klasę posiadającą wiele wariantów takiej samej funkcjonalności (na przykład, jeśli klasa ma współpracować z wieloma serwerami bazodanowymi).
-// 2. Użyj tego wzorca gdy chcesz rozszerzyć klasę na kilku niezależnych płaszczyznach.
+// 1. Stosuj wzorzec Most gdy, chcesz rozdzielić i przeorganizować monolityczną klasę posiadającą wiele wariantów takiej samej funkcjonalności
+// (na przykład, jeśli klasa ma współpracować z wieloma serwerami bazodanowymi).
+// 2. Użyj tego wzorca gdy, chcesz rozszerzyć klasę na kilku niezależnych płaszczyznach.
 // 3. Most pozwala spełnić wymóg możliwości wyboru implementacji w trakcie działania programu.
 
 // Zalety:
@@ -25,9 +26,7 @@ declare(strict_types=1);
 // Wady
 //
 // 1. Kod może stać się bardziej skomplikowany gdy zastosuje się ten wzorzec w przypadku wysoce zwartej klasy.
-
-
-//Most zazwyczaj wykorzystuje się od początku projektu, by pozwolić na niezależną pracę nad poszczególnymi częściami aplikacji.
+// (I) Most zazwyczaj wykorzystuje się od początku projektu, by pozwolić na niezależną pracę nad poszczególnymi częściami aplikacji.
 // Z drugiej strony, Adapter jest rozwiązaniem stosowanym w istniejącej aplikacji w celu umożliwienia współpracy pomiędzy niekompatybilnymi klasami.
 //
 //Most, Stan, Strategia (i w pewnym stopniu Adapter) mają podobną strukturę.

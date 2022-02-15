@@ -15,7 +15,7 @@ require_once '../../../vendor/autoload.php';
 // Kiedy stosowac :
 // 1.  Stosuj wzorzec Metoda szablonowa gdy chcesz pozwolić klientom na rozszerzanie niektórych tylko etapów algorytmu,
 // ale nie całego, ani też jego struktury.
-// 2. Wzorzec ten jest przydatny gdy masz wiele klas zawierających niemal identyczne algorytmy różniące się jedynie szczegółami.
+// 2. Wzorzec ten jest przydatny gdy, masz wiele klas zawierających niemal identyczne algorytmy różniące się jedynie szczegółami.
 //  W takiej sytuacji bowiem konieczność modyfikacji algorytmu skutkuje koniecznością modyfikacji wszystkich klas.
 // 3.
 

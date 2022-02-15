@@ -15,7 +15,8 @@
 
 
 
-class Product {
+class Product
+{
     private string $name;
 
     public function __construct(string $name)
@@ -55,7 +56,6 @@ class Shop
 
 class InternetOrdersFacade
 {
-
     private ProductsStorage $productsStorage;
     private OrdersSystem $ordersSystem;
     private Shop $shop;
@@ -70,7 +70,6 @@ class InternetOrdersFacade
         $this->shop = $shop;
     }
 
-
     public function buy(Product $p): void
     {
         echo 'Product buy : ' . PHP_EOL;
@@ -78,7 +77,6 @@ class InternetOrdersFacade
         $this->ordersSystem->order($p);
         $this->productsStorage->getFromStorage($p);
     }
-
 }
 
 $p = new Product('szelki');

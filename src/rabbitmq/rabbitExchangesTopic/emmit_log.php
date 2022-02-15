@@ -50,7 +50,7 @@ $routingKey = $origin . '.' . $severity;
 
 
 
-for ($i = 0; $i < 10000; $i++) {
+for ($i = 0; $i < 1; $i++) {
     $msg = new AMQPMessage(
         json_encode(['id' => $i, 'msg' => $textMsg], JSON_THROW_ON_ERROR),
         ['delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT] // oznacza ze wiadomosc nie zniknie podczas wylozenia sie kolejki lub amqp

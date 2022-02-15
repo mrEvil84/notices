@@ -26,12 +26,12 @@ Przyklad zlamania zasady Liskov
 
 [User korzysta z protokat]
 
+(prostokąt jest kwadratem ale, kwadrat nie może być prostokątem)
+
 [Prostokat]
      ^
      |
-  [Kwadrat]
-
-
+ [Kwadrat]
 
 Prostokat p = new Kwadrat
 p.setW (5)

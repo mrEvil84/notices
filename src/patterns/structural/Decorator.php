@@ -6,9 +6,12 @@
 // w specjalnych obiektach opakowujących, które zawierają odpowiednie zachowania.
 
 // Kiedy stosować :
-//  1. Stosuj wzorzec Dekorator gdy chcesz przypisywać dodatkowe obowiązki obiektom w trakcie działania programu, bez psucia kodu, który z tych obiektów korzysta.
-//  2. Stosuj ten wzorzec gdy, rozszerzenie zakresu obowiązków obiektu za pomocą dziedziczenia byłoby niepraktyczne, lub niemożliwe.
-//  3. Wiele języków programowania posiada słowo kluczowe final, za pomocą którego uniemożliwia się dalsze rozszerzanie klasy.
+//  1. Stosuj wzorzec Dekorator gdy, chcesz przypisywać dodatkowe obowiązki obiektom w trakcie działania programu,
+//     bez psucia kodu, który z tych obiektów korzysta.
+//  2. Stosuj ten wzorzec gdy, rozszerzenie zakresu obowiązków obiektu za pomocą dziedziczenia byłoby niepraktyczne,
+//     lub niemożliwe np. klasa jest final
+//  3. Wiele języków programowania posiada słowo kluczowe final, za pomocą którego uniemożliwia się dalsze rozszerzanie
+//     klasy.
 //     W przypadku klasy finalnej, jedynym sposobem na ponowne wykorzystanie istniejącego zachowania
 //     jest opakowanie jej nakładkami swojego autorstwa — zgodnie ze wzorcem Dekorator,
 //     zachowane SRP, OCP

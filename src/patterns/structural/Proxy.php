@@ -2,7 +2,8 @@
 
 // MT: robienie rzeczy przez posrednika np. kontrolowanie dostepu do bazy danych
 // (!!)
-// MT: Proxy ma ten sam interfejs co db aby mozna je bylo wymiennie stosowac tak aby usluga nie wiedziala czy ma do czynienia z proxy czy obiektem db
+// MT: Proxy ma ten sam interfejs co db aby mozna je bylo wymiennie stosowac tak aby usluga nie wiedziala
+// czy ma do czynienia z proxy czy obiektem db
 // (!!)
 
 
