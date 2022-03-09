@@ -1,9 +1,13 @@
 <?php
 
-// MT: stan wewnetrzny - wspolny dla wszystkich obiektow , stan zewnetrzny to dany stan (zmieniajacy sie czesto) danego obiektu
-// MT: sadzenie drzewek w lesie, stan wewn. to kolor drzewa, zewnetrzny położenie.
+// MT: stan wewnetrzny - wspolny dla wszystkich obiektow ,
+// stan zewnetrzny to dany stan (zmieniajacy sie czesto) danego obiektu
+// MT: sadzenie drzewek w lesie, stan wewn. to kolor drzewa,
+// zewnetrzny położenie.
 
-// Pyłek jest strukturalnym wzorcem projektowym pozwalającym zmieścić więcej obiektów w danej przestrzeni pamięci RAM poprzez współdzielenie części opisu ich stanów.
+// Pyłek jest strukturalnym wzorcem projektowym pozwalającym zmieścić więcej obiektów w danej przestrzeni pamięci RAM
+// poprzez współdzielenie części opisu ich stanów.
+
 // Stan wewnetrzny ktory jest duzy przechowywany jest w klasie-pylek , dane te sa wspolne dla wielu podobnyh obiektow np. drzew
 // Stan zewnetrzny ktory jest zmienny np. pozycja malowania na ekranie jest zmienna
 // Tworzenie pylku zeby sie nie powtarzac , jest za pomoca fabryki

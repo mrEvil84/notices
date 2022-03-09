@@ -30,17 +30,17 @@
 # list() - get values from array
 
         //Enter your code here, enjoy!
-        function getData() {
-            return [1,2,3,4,5];
-        }
+//        function getData() {
+//            return [1,2,3,4,5];
+//        }
 
 
-$secElement = getData()[1];
+//$secElement = getData()[1];
 
-var_dump($secElement);
-list(,,$thirdElement) = getData();
+//var_dump($secElement);
+//list(,,$thirdElement) = getData();
 
-var_dump($thirdElement);
+//var_dump($thirdElement);
 
 //$info = array('coffee', 'brown', 'caffeine');
 // Listing all the variables
@@ -110,7 +110,7 @@ var_dump($thirdElement);
 //$comparator = function ($max) {
 //  return function ($v) use ($max) { return $v > $max; };
 //};
-//
+
 //$numbers = [-1,0,1,2,3,4,5,6,7,8];
 //var_dump(array_filter($numbers, $comparator(4)));
 //var_dump(array_filter($numbers, $comparator(7)));
@@ -160,11 +160,12 @@ var_dump($thirdElement);
 //
 //var_dump($uppercased, $lowercased);
 
-//$numbers = [1,2,3,4,5,6,7];
+$numbers = [1,2,3,4,5,6,7];
 
-//$multiplied = array_map(function ($n) {
-//    return $n*$n;
-//}, $numbers);
+$multiplied = array_map(function ($n) {
+    return $n*$n;
+}, $numbers);
+
 
 // pass array keys and values to callback
 
@@ -209,18 +210,19 @@ var_dump($thirdElement);
 
 // Multiple occurrences in $array1 are all treated the same way
 // return this from 1 array that not in second one
+// zwraca to co jest w pierwszej tablicy ale nie ma w drugiej
 
-//$array1 = array("a" => "green", "red", "blue", "red");
-//$array2 = array("b" => "green", "yellow", "red");
-
+//$array1 = array("green", "red", "blue", "red");
+//$array2 = array("green", "yellow", "red");
+//
 //$result = array_diff($array2, $array1);
 //print_r($result); // yellow
 
-//$array3 = [1,2,3,4];
-//$array4 = [1,2,4,5];
-
+//$array3 = [1,2,3,4,5,6];
+//$array4 = [1,2,4,5,6,7,8];
+//
 //$result2 = array_diff($array3, $array4);
-
+//
 //print_r($result2);
 
 
@@ -233,7 +235,7 @@ var_dump($thirdElement);
 
 # MATH CALCULATIONS
 
-$numbers = [1, 2, 3, 4, 5];
+//$numbers = [1, 2, 3, 4, 5];
 
 # array_sum
 
@@ -334,13 +336,13 @@ $data2 = [
 //$top = array_slice($values, 0, 3);
 //print_r($top);
 
-//$words2 = ['aa', '', 'bbb', 'ccc','aa','aa','bb'];
-//$words2Count = array_count_values(
-//    array_filter(
-//        array_map('trim',$words2)
-//    )
-//);
-//print_r($words2Count);
+$words2 = ['aa', '', 'bbb', 'ccc','aa','aa','bb'];
+$words2Count = array_count_values(
+    array_filter(
+        array_map('trim',$words2)
+    )
+);
+print_r($words2Count);
 
 //$order = [
 //    ['product_id' => 1, 'price' => 99, 'count' => 1],

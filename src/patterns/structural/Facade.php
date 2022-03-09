@@ -1,10 +1,11 @@
 <?php
 // Ukrywanie skompikowanego interfejsu obiektu i udostepnienie tylko potrzenych rzeczy
 
-// Fasada jest strukturalnym wzorcem projektowym, który wyposaża bibliotekę, framework lub inny złożony zestaw klas w uproszczony interfejs.
+// Fasada jest strukturalnym wzorcem projektowym, który wyposaża bibliotekę,
+// framework lub inny złożony zestaw klas w uproszczony interfejs.
 
 // Zastosowanie:
-//  1. Użyj wzorca Fasada gdy potrzebujesz ograniczonego, ale łatwego w użyciu interfejsu do złożonego podsystemu.
+//  1. Użyj wzorca Fasada gdy, potrzebujesz ograniczonego, ale łatwego w użyciu interfejsu do złożonego podsystemu.
 //  2. Stosuj Fasadę gdy chcesz ustrukturyzować podsystem w warstwy.
 
 // Zalety:

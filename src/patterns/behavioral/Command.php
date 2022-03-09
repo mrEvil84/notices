@@ -11,8 +11,10 @@
 // 3. Stosuj wzorzec Polecenie gdy, chcesz zaimplementować operacje odwracalne.
 
 // Zalety:
-// 1. Zasada pojedynczej odpowiedzialności. Można rozprzęgnąć klasy wywołujące polecenia od klas faktycznie je wykonujących.
+// 1. Zasada pojedynczej odpowiedzialności. Można rozprzęgnąć klasy wywołujące polecenia
+//   od klas faktycznie je wykonujących.
 // 2. Zasada otwarte/zamknięte. Można wprowadzić nowe polecenia do aplikacji bez psucia istniejącego kodu klienta.
+
 // Pozwala zaimplementować cofnij/ponów.
 // Pozwala zaimplementować opóźnione wykonywanie działań.
 // Można złożyć zestaw prostszych poleceń w jedno skomplikowane.

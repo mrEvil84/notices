@@ -4,14 +4,14 @@
 // który daje możliwość tworzenia złożonych obiektów etapami,
 // krok po kroku.
 
-//Wzorzec ten pozwala produkować różne typy oraz reprezentacje obiektu używając tego samego kodu konstrukcyjnego.
+// Wzorzec ten pozwala produkować różne typy oraz reprezentacje obiektu używając tego samego kodu konstrukcyjnego.
 // Wzorzec Budowniczy pozwala konstruować złożone obiekty krok po kroku.
 // Budowniczy ponadto nie pozwala na dostęp do nich innym obiektom, dopóki nie zostaną ukończone.
 
 // Istotne jest to, że nie musisz wywoływać wszystkich etapów. Możesz bowiem ograniczyć się tylko do tych kroków,
 // które są niezbędne do określenia potrzebnej nam konfiguracji obiektu.
 
-// Kiedy używać :
+// Kiedy używać:
 // 1. Stosuj wzorzec Budowniczy, aby pozbyć się “teleskopowych konstruktorów”.
 // 2. Stosuj wzorzec Budowniczy, gdy potrzebujesz możliwości tworzenia różnych reprezentacji jakiegoś produktu
 //    (na przykład, domy z kamienia i domy z drewna).
@@ -20,7 +20,8 @@
 // Zalety:
 // 1. Możesz konstruować obiekty etapami, odkładać niektóre etapy, lub wykonywać je rekursywnie.
 // 2. Możesz wykorzystać ponownie ten sam kod konstrukcyjny budując kolejne reprezentacje produktów.
-// 3. OCP, Zasada pojedynczej odpowiedzialności. Można odizolować skomplikowany kod konstrukcyjny od logiki biznesowej produktu.
+// 3. OCP, Zasada pojedynczej odpowiedzialności.
+//    Można odizolować skomplikowany kod konstrukcyjny od logiki biznesowej produktu.
 
 // Wady:
 // 1. Kod staje się bardziej skomplikowany, gdyż wdrożenie tego wzorca wiąże się z dodaniem wielu nowych klas.

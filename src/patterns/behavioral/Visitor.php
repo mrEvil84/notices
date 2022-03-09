@@ -11,7 +11,8 @@ require_once '../../../vendor/autoload.php';
 // 1. Stosuj wzorzec Odwiedzający gdy istnieje potrzeba wykonywania jakiegoś działania na wszystkich elementach
 // złożonej struktury obiektów (jak drzewo obiektów).
 // 2.  Stosowanie Odwiedzającego pozwala uprzątnąć logikę biznesową czynności pomocniczych.
-// 3. Warto stosować ten wzorzec gdy jakieś zachowanie ma sens tylko w kontekście niektórych klas wchodzących w skład hierarchii klas,
+// 3. Warto stosować ten wzorzec gdy jakieś zachowanie ma sens tylko w kontekście niektórych klas
+// wchodzących w skład hierarchii klas,
 // ale nie wszystkich.
 
 // Zalety
@@ -150,7 +151,6 @@ $invoice = new Invoice('invoice-1', 1567.34);
 $personalInvoice = new PersonalInvoice('Piotr', 'Kowerzanow', $invoice);
 
 $visitor = new XMLExportVisitor();
-
 $invoice->accept($visitor);
 $invoiceXml = $visitor->getXmlInvoice();
 

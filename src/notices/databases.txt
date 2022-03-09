@@ -102,7 +102,7 @@ Q: What is the purpose of using a HEAP table?
 A: The table which uses a hashed index and stores in the memory is called the HEAP table
 
 Q: How can you add and remove any column of a table?
-A: ALTER TABLE table_name ADD COLUMN column_name column_definition [FIRST|AFTER existing_colu
+A: ALTER TABLE table_name ADD COLUMN column_name column_definition [FIRST|AFTER existing_column
    ALTER TABLE table_name DROP COLUMN column_name;
 
 Q: What is an index? How can an index be declared in MySQL?
@@ -133,7 +133,7 @@ A: Korzyść wydajnościowa ze stosowania indeksów jest największa w przypadku
 
 [i]
 [Można się kierować prostą zasadą, polegającą na tym, że nie tworzymy indeksu jeżeli,
-ni  e jesteśmy przekonani, że faktycznie będziemy z niego korzystać.]
+nie jesteśmy przekonani, że faktycznie będziemy z niego korzystać.]
 
 
 Q: Których kolumn nie należy indeksować?
@@ -145,8 +145,8 @@ gdy tabela ulega nawet najmniejszej modyfikacji.
 
 [ii]
 Najlepszą praktyką jest dodanie indeksu dla wartości,
-które są często używane do wyszukiwania, a
-le nie ulegają częstym zmianom.
+które są często używane do wyszukiwania,
+ale nie ulegają częstym zmianom.
 
 Q: What is the view? How can you create and drop view in MySQL?
 A: A view works as a virtual table that is used to store query and returns a result set when it is called.

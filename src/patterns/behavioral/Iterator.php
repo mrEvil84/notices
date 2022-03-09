@@ -6,7 +6,7 @@
 // Idea iteratora to przetwarzanie kolekcji, list, drzew , etc. delegując sposób przechodzenia po strukturze dla klasy
 // która, daną strukturę wykorzystuje do przechowywania danych w kolekcjach
 
-//Oprócz implementowania samego algorytmu,
+// Oprócz implementowania samego algorytmu,
 // obiekt iteratora hermetyzuje wszystkie szczegóły sposobu przechodzenia przez kolejne elementy,
 // jak bieżąca pozycja, czy ilość pozostałych elementów.
 // Dzięki temu wiele iteratorów może jednocześnie przeglądać tę samą kolekcję, niezależnie od siebie.
@@ -16,7 +16,7 @@
 // 1.  Stosuj wzorzec Iterator gdy kolekcja z którą masz do czynienia posiada skomplikowaną strukturę,
 //     ale zależy ci na ukryciu jej przed klientem (dla wygody, lub dla bezpieczeństwa).
 // 2.  Stosuj Iterator gdy chcesz, aby twój kod był w stanie przeglądać elementy różnych struktur danych,
-//      lub gdy nie znasz z góry szczegółów ich struktury.
+//     lub gdy nie znasz z góry szczegółów ich struktury.
 
 // Zalety
 // 1. SRP Zasada pojedynczej odpowiedzialności. Można uprzątnąć kod klienta i kolekcje, ekstrahując obszerny kod przeglądania do osobnych klas.

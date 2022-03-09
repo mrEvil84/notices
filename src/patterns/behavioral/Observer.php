@@ -93,7 +93,7 @@ class EventManager // publisher
 
     public function subscribeListener(EventType $eventType, Listener $listener): void
     {
-        if (!$this->isListenerExistsAlreadyInQueue($listener, $eventType)) {
+        if (!$this->isListenerExistInQueue($listener, $eventType)) {
             $this->listeners[$eventType->getName()][] = $listener;
         }
     }
@@ -106,7 +106,7 @@ class EventManager // publisher
         }
     }
 
-    private function isListenerExistsAlreadyInQueue(Listener $listener, EventType $eventType): bool
+    private function isListenerExistInQueue(Listener $listener, EventType $eventType): bool
     {
         if (empty($this->listeners)) {
             return false;

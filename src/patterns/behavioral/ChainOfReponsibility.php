@@ -6,7 +6,8 @@
 // go do kolejnego obiektu obsługującego w łańcuchu.
 
 // dane na ktorych operuje wzorzec:
-// uwaga na dane przekazywane przez obiekt, trzeba wpuszczac nowy obiekt jak chce się wykonać łańcuch zależności na danych
+// uwaga na dane przekazywane przez obiekt,
+// trzeba wpuszczać nowy obiekt jak chce się wykonać łańcuch zależności na danych
 //
 // Kiedy stosować :
 //     1.  Stosuj wzorzec Łańcuch zobowiązań gdy, twój program ma obsługiwać różne rodzaje żądań na różne sposoby,

@@ -21,7 +21,8 @@ declare(strict_types=1);
 // 1. Możesz tworzyć niezależne od platformy klasy i aplikacje.
 // 2. Kod klienta działa na wyższym poziomie abstrakcji. Nie musi mieć do czynienia ze szczegółami platformy.
 // 3. Zasada otwarte/zamknięte. Możesz wprowadzać nowe abstrakcje i implementacje niezależnie od siebie.
-// 4.  Zasada pojedynczej odpowiedzialności. W abstrakcji możesz skupić się na wysokopoziomowej logice, zaś w implementacji na szczegółach platformy.
+// 4. Zasada pojedynczej odpowiedzialności.
+//    W abstrakcji możesz skupić się na wysokopoziomowej logice, zaś w implementacji na szczegółach platformy.
 
 // Wady
 //

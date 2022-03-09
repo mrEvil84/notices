@@ -2,7 +2,8 @@
 // MT: pakowanie klasy final w obiekt (dekorator) aby ją sobie rozszerzyć bez psucia jej
 
 
-// Dekorator to strukturalny wzorzec projektowy pozwalający dodawać nowe obowiązki obiektom poprzez umieszczanie tych obiektów
+// Dekorator to strukturalny wzorzec projektowy pozwalający dodawać nowe obowiązki obiektom
+// poprzez umieszczanie tych obiektów
 // w specjalnych obiektach opakowujących, które zawierają odpowiednie zachowania.
 
 // Kiedy stosować :

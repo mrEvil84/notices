@@ -5,8 +5,8 @@ PSR-0, PSR-4 – standardy dot. autoloadingu
 
 PSR-0 działa na zasadzie struktury katalogowej, która odzwierciedla namespace’y,
 PSR-4 pozwala na dostosowanie struktury katalogowej podczas autoloadingu,
-      wielkosc liter w sciezce ma znaczenie ,
-      można mieć wiele ścieżek do wielu projektow , np kilka prefiksow do kilku katalogow
+      wielkosc liter w sciezce ma znaczenie,
+      można mieć wiele ścieżek do wielu projektow, np kilka prefiksow do kilku katalogow
       mozna do jednego prefiksu dodawac po kilka sciezek
 
 
@@ -24,9 +24,43 @@ In PSR-4 autoload the path to directory will be like App\Controller\IndexControl
 In PSR-0 autoload will be                            App\Controller\IndexController -->dir/App/Controller/IndexController.php.
 
 
+Under the psr-4 key you define a mapping from namespaces to paths, relative to the package root.
+When autoloading a class like Foo\\Bar\\Baz a namespace prefix Foo\\ pointing
+to a directory src/ means that the autoloader will look for a file named src/Bar/Baz.php and include it if present.
+
+[[[ PSR-4 jest czymś w rodzaju 'ścieżki względnej', PSR-0, 'ścieżki absolutnej'. ]]]
+
+PSR-0
+{
+    "autoload": {
+        "psr-0": {
+            "Acme\\Foo\\Bar\\": "src/",
+        }
+    }
+}
+
+Acme\Foo\Bar --> src/Acme/Foo/Bar.php
+
+
+PSR-4
+{
+    "autoload": {
+        "psr-4": {
+            "Acme\\Foo\\Bar\\": "src/",
+        }
+    }
+}
+
+Acme\Foo\Bar --> src/Bar.php
+
+
+Under the psr-0 key you define a mapping from namespaces to paths, relative to the package root.
+Note that this also supports the PEAR-style non-namespaced convention.
+
 * W nowszym standardzie plik może być w kilku lokalizacjach. Korzystamy też z kolejki autoloaderów.
 
-* Nazwy klas zapisujemy identycznie jak w PSR-0 ale znak podkreślenia nie ma już specjalnego znaczenia. Zrywamy więc z kompatybilnością z PHP 5.2 i starszymi.
+* Nazwy klas zapisujemy identycznie jak w PSR-0 ale znak podkreślenia nie ma już specjalnego znaczenia.
+  Zrywamy więc z kompatybilnością z PHP 5.2 i starszymi.
 
 * Najważniejsza zmiana to sposób traktowania ścieżki do projektu.
 * Tym razem, zamiast jednej możemy mieć wiele ścieżek, każda zdefiniowana dla jakiegoś prefiksu nazwy klasy. Np.
@@ -56,3 +90,18 @@ to autoloader będzie spodziewał się, że znajdzie plik Klasa.php w jednej z d
 Kilka dodatkowych warunków w PSR-4 mówi o tym,
 że wielkość liter w nazwach klas jest rozróżniana (inaczej niż w PSR-0) oraz,
 że dla każdej klasy musi być zdefiniowany jakiś katalog pasujący do jej prefiksu.
+
+Inny art:
+
+1. na przykład jeśli zdefiniujesz, że przestrzeń nazw Acme\Foo\ jest zakotwiczona w src/,
+
+z PSR-0 oznacza to, że będzie szukał Acme\Foo\Bar w src/Acme/Foo/Bar.php
+podczas gdy w PSR-4 będzie szukać Acme\Foo\Bar w src/Bar.php(where Bar class is).
+2. PSR-4 nie konwertuje podkreślników na separatory katalogów
+
+3. wolisz używać PSR-4 z przestrzeniami nazw
+
+4. PSR-0 nie zadziała nawet jeśli nazwa klasy różni się od nazwy pliku, jak w powyższym przykładzie:
+
+Acme\Foo\Bar ---> src/Acme/Foo/Bar.php (dla klasy Bar) będzie działać
+Acme\Foo\Bar ---> src/Acme/Foo/Bar2.php (dla klasy Bar) nie będzie działać

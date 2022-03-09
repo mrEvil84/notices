@@ -3,15 +3,21 @@
 // MT: uzywanie starych klas które, mają niekompatybilny interfejs z naszą aplikacją
 
 
-// Adapter jest strukturalnym wzorcem projektowym pozwalającym na współdziałanie ze sobą obiektów o niekompatybilnych interfejsach.
+// Adapter jest strukturalnym wzorcem projektowym pozwalającym na współdziałanie ze sobą
+// obiektów o niekompatybilnych interfejsach.
 
 // Kiedy stosowac :
-// 1. Stosuj klasę Adapter gdy chcesz wykorzystać jakąś istniejącą klasę, ale jej interfejs nie jest kompatybilny z resztą twojego programu.
-// 2.  Stosuj ten wzorzec gdy chcesz wykorzystać ponownie wiele istniejących podklas którym brakuje jakiejś wspólnej funkcjonalności, niedającej się dodać do ich nadklasy.
+// 1. Stosuj klasę Adapter gdy, chcesz wykorzystać jakąś istniejącą klasę,
+// ale jej interfejs nie jest kompatybilny z resztą twojego programu.
+// 2. Stosuj ten wzorzec gdy chcesz wykorzystać ponownie wiele istniejących podklas którym.
+//    brakuje jakiejś wspólnej funkcjonalności, niedającej się dodać do ich nadklasy.
 //
 // Zalety:
-// 1.  SRP. Zasada pojedynczej odpowiedzialności. Można oddzielić interfejs lub kod konwertujący dane od głównej logiki biznesowej programu.
-// 2.  OCP. Zasada otwarte/zamknięte. Można wprowadzać do programu nowe typy adapterów bez psucia istniejącego kodu klienckiego, o ile będzie on korzystał z adapterów poprzez interfejs kliencki.
+// 1. SRP. Zasada pojedynczej odpowiedzialności.
+//    Można oddzielić interfejs lub kod konwertujący dane od głównej logiki biznesowej programu.
+// 2. OCP. Zasada otwarte/zamknięte.
+//    Można wprowadzać do programu nowe typy adapterów bez psucia istniejącego kodu klienckiego,
+//    o ile będzie on korzystał z adapterów poprzez interfejs kliencki.
 // 3.
 // Wady
 // 1. Ogólna złożoność kodu zwiększa się, ponieważ trzeba wprowadzić zestaw nowych interfejsów i klas.
