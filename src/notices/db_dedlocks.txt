@@ -20,7 +20,7 @@ transakcji dane zostaną zmienione czyli nasz pierwotny odczyt będzie nieaktual
 
 
 Repeatable read – w tym przypadku odczytywane są jedynie dane z zatwierdzonych transakcji,
- a żadna z transakcji nie może zmodyfikować danych, które zostały odczytane
+a żadna z transakcji nie może zmodyfikować danych, które zostały odczytane
 
 
 Snapshot – w tym przypadku każda transakcja w momencie jej utworzenia tworzy sobie snapshot danych i na nim pracuje
@@ -35,10 +35,10 @@ W efekcie żadna inna transakcja nie będzie miała możliwości zmiany danych w
 
 
 W praktyce ustawienie właściwego poziomu izolacji to walka między aktualnością zwracanych danych a wydajnością.
- Wybór odpowiedniej opcji jest zwłaszcza uzależniony od funkcjonalności aplikacji –
- jeżeli nasza aplikacja wyłącznie czyta dane, które nigdy się nie zmieniają to oczywiście najbardziej efektywnym
-  ustawieniem będzie Read uncommited. Takie ustawienie będzie jednak najprawdopodobniej nieakceptowalne przy częstych
-  zmianach w bazie.
+Wybór odpowiedniej opcji jest zwłaszcza uzależniony od funkcjonalności aplikacji –
+jeżeli nasza aplikacja wyłącznie czyta dane, które nigdy się nie zmieniają to oczywiście najbardziej efektywnym
+ustawieniem będzie Read uncommited. Takie ustawienie będzie jednak najprawdopodobniej nieakceptowalne przy częstych
+zmianach w bazie.
 
 
 

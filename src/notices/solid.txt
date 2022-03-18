@@ -20,7 +20,7 @@ powinny być otwarte na rozbudowę, ale zamknięte dla modyfikacji
 
 [L] Liskov Substitution Principle (LSP) – zasada podstawiania Liskov –
 korzystanie z funkcji klasy bazowej musi być możliwe również w przypadku podstawienia instancji klas pochodnych.
-Klasa pochodna nie powinna zmieniać zachowaia klasy bazowej.
+Klasa pochodna nie powinna zmieniać zachowania klasy bazowej.
 
 Przyklad zlamania zasady Liskov
 

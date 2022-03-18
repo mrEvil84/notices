@@ -13,5 +13,5 @@ composer.lock:
 
 - tworzy się automatycznie przy pierwszej instalacji
 - zawiera opis wszystkich zależności
-- instalując zależności po raz drugi, composer będzie używał tego pliku po to aby pobrac odpowiednie wersje bubliotek
-- innymi słowy, composer.lock jest zabezpieczeniem przed instalacją innych wersji zależności niż te ustalone w projekcie
+- instalji mposer będzie używał tego pliku po to aby pobrac odpowiednie wersje bubliotek
+- innymi słowy, composer.lock jest zabezpieczeniem przed in                       8nujkmm  ,,,stalacją innych wersji zależności niż te ustalone w projekcie
